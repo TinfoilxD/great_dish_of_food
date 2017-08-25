@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+
+	<context:annotation-config/>
+	
+	<!-- allows @Transactional -->
+	<tx:annotation-driven/> 
+	
+	<!-- Spring core/context: find beans and auto-registers -->
+	<context:component-scan base-package="com.revature.gspj.gdf"/>
+	
+	<!-- 1. DataSource -->
+	<bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/> 
+		<property name="url" value="jdbc:oracle:thin:@chinook.cspifuzamm3g.us-east-1.rds.amazonaws.com:1521:ORCL"/>
+		<!-- <property name="url" value="#{systemEnvironment['DB_URL']}"/> -->
+		<property name="username" value="gdf"/>
+		<property name="password" value="thegreatdishoffood"/>
+
+
+	</bean>
+	<!-- 2. SessionFactory -->
+	<bean name="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<property name="dataSource" ref="dataSource"/>
+		<property name="packagesToScan" value="com.revature.gspj.gdf"></property> <!-- looks for anything annotated with entity -->
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</prop>
+				<prop key="show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- 3. TransactionManager -->
+	<bean name="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<!-- Listens for methods that begin with transactional. If so, it opens a session from a session factory -->
+		<property name="sessionFactory" ref="sessionFactory"/>
+		
+	</bean>
+
+	<!-- 4. DAO -->
+	<bean name="dishTypeDAO" class="com.revature.gspj.gdf.dao.DishTypeDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean name="userTypeDAO" class="com.revature.gspj.gdf.dao.UserTypeDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean name="orderStatusDAO" class="com.revature.gspj.gdf.dao.OrderStatusDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean name="gdfUserDAO" class="com.revature.gspj.gdf.dao.GDFUserDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+</beans>
+
+
