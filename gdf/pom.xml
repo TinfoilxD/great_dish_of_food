@@ -176,6 +176,7 @@
 					<configuration>
 						<url>http://localhost:8080/manager/text</url>
 						<update>true</update>
+						<webXml>webapp/WEB-INF/web.xml</webXml>
 						<server>jenkins-bot</server>
 						<path>/gdf</path>
 					</configuration>
