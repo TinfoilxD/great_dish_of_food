@@ -55,6 +55,7 @@
 	<bean name="gdfUserDAO" class="com.revature.gspj.gdf.dao.GDFUserDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	
 </beans>
 
 
