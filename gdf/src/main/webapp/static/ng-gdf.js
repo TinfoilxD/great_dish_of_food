@@ -6,13 +6,24 @@ angular.module('gdf').config(
 			// future with ajax requests
 			$urlRouterProvider.otherwise("/")
 			$stateProvider.state({
-				name : 'dishType',
+				name : 'home',
 				url : '/',
-				templateUrl : 'dish_type.html',
-				controller : 'dishTypeController'
+				templateUrl: 'landing.html'
+			})
+			.state({
+				name : 'dishTypeCreate',
+				url : '/dishTypeCreate',
+				templateUrl : 'dish_type_create.html',
+				controller : 'dishTypeCreateController'
+			})
+			.state({
+				name : 'dishCreate',
+				url : '/dishCreate',
+				templateUrl : 'dish_create.html',
+				controller : 'dishCreateController'
 			})
 		});
-angular.module('gdf').controller('dishTypeController',
+angular.module('gdf').controller('dishTypeCreateController',
 		function($scope, $http, $state, $rootScope){
 	$scope.createDishType = function(){
 		console.log($scope.newDishType);
@@ -24,6 +35,22 @@ angular.module('gdf').controller('dishTypeController',
 			console.log('Success' + value.data)
 		}, function(reason) {
 			console.log(reason);
+		}, function(value) {
+			
+		})
+	}
+});
+angular.module('gdf').controller('dishCreateController',
+		function($scope, $http, $state, $rootScope){
+	$scope.createDish = function(){
+		console.log($scope.newDish);
+		$http({
+			method: 'POST',
+			url: 'dish/create',
+			data: $scope.newDish
+		}).then(function(value) {
+		}, function(reason) {
+			
 		}, function(value) {
 			
 		})

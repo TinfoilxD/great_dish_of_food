@@ -11,17 +11,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.gspj.gdf.bean.DishType;
 import com.revature.gspj.gdf.dao.DishTypeDAO;
+import com.revature.gspj.gdf.service.DishTypeService;
 
 
 @Controller
 public class DishTypeController {
 	
 	@Autowired
-	private DishTypeDAO dao;
+	private DishTypeService service;
 	private Logger logger = Logger.getLogger(DishTypeController.class);
 	
-	public void setDao(DishTypeDAO dao) {
-		this.dao = dao;
+	public void setService(DishTypeService service) {
+		this.service = service;
 	}
 
 
@@ -29,8 +30,7 @@ public class DishTypeController {
 	@RequestMapping(value = "/dishType/create", method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public DishType create(@RequestBody DishType dish){
-		dao.createType(dish);
-		return dish;
+	public void create(@RequestBody DishType dish){
+		service.createType(dish);
 	}
 }
