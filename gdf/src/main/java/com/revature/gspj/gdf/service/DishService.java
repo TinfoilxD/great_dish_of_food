@@ -4,24 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.revature.gspj.gdf.bean.DishType;
+import com.revature.gspj.gdf.bean.Dish;
+import com.revature.gspj.gdf.dao.DishDAO;
 import com.revature.gspj.gdf.dao.DishTypeDAO;
 
 @Service
-public class DishTypeService {
-
+public class DishService {
+	
 	@Autowired
-	private DishTypeDAO dao;
-	
-	
-	public void setDao(DishTypeDAO dao) {
+	private DishDAO dao;
+
+	public void setDao(DishDAO dao) {
 		this.dao = dao;
 	}
-
-
+	
 	@Transactional
-	public void createType(DishType dish) {
-		dao.createType(dish);
+	public void createDish(Dish dish){
+		dao.createDish(dish);
 	}
-
 }
