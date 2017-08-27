@@ -1,5 +1,7 @@
 package com.revature.gspj.gdf.controller;
 
+import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.gspj.gdf.bean.DishType;
-import com.revature.gspj.gdf.dao.DishTypeDAO;
 import com.revature.gspj.gdf.service.DishTypeService;
 
 
@@ -26,7 +27,12 @@ public class DishTypeController {
 	}
 
 
-
+	@RequestMapping(value = "/dishType/all", method = RequestMethod.GET)
+	@ResponseBody
+	public List<DishType> getAll(){
+		return service.getAllTypes();
+	}
+	
 	@RequestMapping(value = "/dishType/create", method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody

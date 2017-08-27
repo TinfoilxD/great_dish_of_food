@@ -43,9 +43,7 @@
 	</bean>
 
 	<!-- 4. DAO -->
-	<bean name="dishTypeDAO" class="com.revature.gspj.gdf.dao.DishTypeDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
+
 	<bean name="userTypeDAO" class="com.revature.gspj.gdf.dao.UserTypeDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>

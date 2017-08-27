@@ -8,74 +8,95 @@ angular.module('gdf').config(
 			$stateProvider.state({
 				name : 'home',
 				url : '/',
-				templateUrl: 'landing.html'
-			})
-			.state({
+				templateUrl : 'landing.html'
+			}).state({
 				name : 'dishTypeCreate',
 				url : '/dishTypeCreate',
 				templateUrl : 'dish_type_create.html',
 				controller : 'dishTypeCreateController'
-			})
-			.state({
+			}).state({
+				name : 'dishTypeAll',
+				url : '/dishTypeAll',
+				templateUrl : 'dish_type_all.html',
+				controller : 'dishTypeAllController'
+			}).state({
 				name : 'dishCreate',
 				url : '/dishCreate',
 				templateUrl : 'dish_create.html',
 				controller : 'dishCreateController'
-			})
-			.state({
+			}).state({
 				name : 'login',
 				url : '/login',
 				templateUrl : 'login.html',
 				controller : 'loginContainer'
 			})
 		});
-
 angular.module('gdf').controller('loginContainer',
-		function($scope,$http,$state){
-	$scope.login = function(){
-		$http({
-			method 'POST',
-			url: '/login',
-			data: $scope.credentials
-		}).then function(value) {
-			console.log('Success' + value.data)
-		}, function(reason) {
-			console.log(reason);
-		}
-	}
-});
+		function($scope, $http, $state) {
+			$scope.login = function() {
+				$http({
+					method : 'POST',
+					url : '/login',
+					data : $scope.credentials
+				}).then(function(value) {
 
+				}, function(reason) {
+
+				}, function(value) {
+
+				})
+			}
+		});
 
 angular.module('gdf').controller('dishTypeCreateController',
-		function($scope, $http, $state, $rootScope){
-	$scope.createDishType = function(){
-		console.log($scope.newDishType);
-		$http({
-			method: 'POST',
-			url: 'dishType/create',
-			data: $scope.newDishType
-		}).then(function(value) {
-			console.log('Success' + value.data)
-		}, function(reason) {
-			console.log(reason);
-		}, function(value) {
-			
-		})
-	}
-});
+		function($scope, $http, $state, $rootScope) {
+			$scope.createDishType = function() {
+				console.log($scope.newDishType);
+				$http({
+					method : 'POST',
+					url : 'dishType/create',
+					data : $scope.newDishType
+				}).then(function(value) {
+					console.log('Success' + value.data)
+				}, function(reason) {
+					console.log(reason);
+				}, function(value) {
+
+				})
+			}
+		});
+angular.module('gdf').controller('dishTypeAllController',
+		function($scope, $http, $state,$document) {
+			$document.ready(function(){
+				$scope.getAllDishTypes();
+			})
+			$scope.getAllDishTypes = function() {
+				$http({
+					method : 'GET',
+					url : 'dishType/all'
+				}).then(function(value) {
+					$scope.allDishTypes = value.data;
+				}, function(reason) {
+
+				}, function(value) {
+
+				})
+			}
+		});
+
 angular.module('gdf').controller('dishCreateController',
-		function($scope, $http, $state, $rootScope){
-	$scope.createDish = function(){
-		console.log($scope.newDish);
-		$http({
-			method: 'POST',
-			url: 'dish/create',
-			data: $scope.newDish
-		}).then(function(value) {
-		}, function(reason) {
-			
-		}, function(value) {
-			
-		})
-	}
-})
+		function($scope, $http, $state) {
+			$scope.createDish = function() {
+				console.log($scope.newDish);
+				$http({
+					method : 'POST',
+					url : 'dish/create',
+					data : $scope.newDish
+				}).then(function(value) {
+				}, function(reason) {
+
+				}, function(value) {
+
+				});
+			}
+		});
