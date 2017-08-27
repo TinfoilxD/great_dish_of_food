@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.gspj.gdf.bean.OrderType;
 @Repository
+@Transactional
 public class OrderTypeDAOImpl implements OrderTypeDAO{
 
 	@Autowired
@@ -21,7 +22,6 @@ public class OrderTypeDAOImpl implements OrderTypeDAO{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	@Transactional
 	public List<OrderType> getAllTypes() {
 		return sessionFactory.getCurrentSession()
 				.createCriteria(OrderType.class)
@@ -29,7 +29,6 @@ public class OrderTypeDAOImpl implements OrderTypeDAO{
 	}
 
 	@Override
-	@Transactional
 	public OrderType getTypeFromId(int id) {
 		return (OrderType) sessionFactory.getCurrentSession()
 				.createCriteria(OrderType.class)

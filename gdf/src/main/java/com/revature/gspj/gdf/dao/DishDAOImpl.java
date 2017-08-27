@@ -5,10 +5,13 @@ import java.util.List;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.gspj.gdf.bean.Dish;
+import com.revature.gspj.gdf.bean.DishType;
 
 @Repository
+@Transactional
 public class DishDAOImpl implements DishDAO {
 
 	@Autowired
@@ -25,26 +28,26 @@ public class DishDAOImpl implements DishDAO {
 	}
 
 	@Override
-	public List<Dish> getDishesByType() {
+	public List<Dish> getDishesByType(DishType type) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void createDish(Dish dish) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(dish);
 
 	}
 
 	@Override
 	public void editDish(Dish dish) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(dish);
 
 	}
 
 	@Override
 	public void deleteDish(Dish dish) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().delete(dish);
 
 	}
 
