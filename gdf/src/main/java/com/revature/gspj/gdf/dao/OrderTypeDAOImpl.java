@@ -8,47 +8,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.revature.gspj.gdf.bean.DishType;
-
+import com.revature.gspj.gdf.bean.OrderType;
 @Repository
-public class DishTypeDAOImpl implements DishTypeDAO{
+public class OrderTypeDAOImpl implements OrderTypeDAO{
 
 	@Autowired
 	private SessionFactory sessionFactory;
-	
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Override
-	@Transactional
-	public void createType(DishType type) {
-		sessionFactory.getCurrentSession().save(type);
-	}
-
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional
-	public List<DishType> getAllTypes() {
+	public List<OrderType> getAllTypes() {
 		return sessionFactory.getCurrentSession()
-				.createCriteria(DishType.class).list();
+				.createCriteria(OrderType.class)
+				.list();
 	}
 
 	@Override
 	@Transactional
-	public DishType getTypeFromId(int id) {
-		return (DishType) sessionFactory.getCurrentSession()
-				.createCriteria(DishType.class)
+	public OrderType getTypeFromId(int id) {
+		return (OrderType) sessionFactory.getCurrentSession()
+				.createCriteria(OrderType.class)
 				.add(Restrictions.eq("id",id))
 				.uniqueResult();
 	}
-
-	@Override
-	@Transactional
-	public void updateType(DishType type) {
-		sessionFactory.getCurrentSession().saveOrUpdate(type);
-		
-	}
-
+	
 }

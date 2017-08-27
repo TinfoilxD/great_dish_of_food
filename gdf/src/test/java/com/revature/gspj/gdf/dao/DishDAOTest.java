@@ -33,18 +33,14 @@ public class DishDAOTest extends AbstractTransactionalJUnit4SpringContextTests {
 	 * 
 	 */
 	
-	private static Logger logger;
+	private static Logger logger = Logger.getLogger(DishDAOTest.class);;
 	@Autowired
 	private DishDAO testDAO;
 	
 	public void setTestDAO(DishDAO testDAO) {
 		this.testDAO = testDAO;
 	}
-	@BeforeClass
-	public static void setUp(){
-		logger = Logger.getLogger(DishDAOTest.class);
-		//testDAO = (DishDAO) GDFContextHelper.getContext().getBean("dishDAOImpl");
-	}
+
 	@Test
 	public void test1(){
 		List<Dish> dishes = testDAO.getAllDishes();

@@ -1,59 +1,50 @@
 package com.revature.gspj.gdf.dao;
 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.gspj.gdf.bean.OrderType;
-import com.revature.gspj.gdf.dao.OrderTypeDAO;
-import com.revature.gspj.gdf.dao.OrderTypeDAOImplNotUsedDeleteEventually;
 
-public class OrderTypeDAOTest {
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:gdf_spring.xml"})
+@TransactionConfiguration
+@Transactional
+public class OrderTypeDAOTest extends AbstractTransactionalJUnit4SpringContextTests {
 	
 	/* Methods to be tested:
 	 * List<OrderType> getAllTypes();
 	 * OrderType getTypeFromId(int id);
 	 */
 	
-	private static Logger logger;
-	private static SessionFactory sessionFactory;
-	private Session session;
+	private static Logger logger = Logger.getLogger(OrderTypeDAOTest.class);;
+	
+	@Autowired
 	private OrderTypeDAO testDAO;
 	
-	@BeforeClass
-	public static void setUp(){
-		logger = Logger.getLogger(OrderTypeDAOTest.class);
-		sessionFactory = new Configuration().configure("hibernate.cfg.xml").buildSessionFactory();
-	}
-	@Before
-	public void beforeTest(){
-		
-		session = sessionFactory.openSession();
-		testDAO = new OrderTypeDAOImplNotUsedDeleteEventually(session); //can refactor this later to inject the dao object
-		//testDAO.setSession(session); not possible because setSession does not exist in interface
-	}
-	@After
-	public void afterTest(){
-		session.close();
-	}
 	
-	@AfterClass
-	public static void dismantle(){
-		sessionFactory.close();
+	public void setTestDAO(OrderTypeDAO testDAO) {
+		this.testDAO = testDAO;
 	}
-	
+
 	@Test
 	public void test1(){
 		List list = testDAO.getAllTypes();
