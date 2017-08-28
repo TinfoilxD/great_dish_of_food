@@ -18,7 +18,11 @@ public class GDFUserDAOImpl implements GDFUserDAO {
 	@Override
 	@Transactional
 	public GDFUser getUser(String username, String password) {
-		
+		//ensure that username or password is not empty
+		if (username == null || password == null
+				||username.equals("") || password.equals(""))
+			throw new IllegalArgumentException();
+		//TODO exchange hash password here 
 		return (GDFUser) sessionFactory.getCurrentSession().
 				createQuery("FROM GDFUser where username = :username and password = :password")
 				.setString("username",username)

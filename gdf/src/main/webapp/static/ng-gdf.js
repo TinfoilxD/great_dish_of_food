@@ -25,26 +25,26 @@ angular.module('gdf').config(
 				templateUrl : 'dish_create.html',
 				controller : 'dishCreateController'
 			}).state({
-				name : 'login',
+				name : 'loginContainer',
 				url : '/login',
 				templateUrl : 'login.html',
 				controller : 'loginContainer'
 			})
 		});
+
 angular.module('gdf').controller('loginContainer',
 		function($scope, $http, $state) {
 			$scope.login = function() {
+				console.log("in controller")
 				$http({
 					method : 'POST',
-					url : '/login',
+					url : '/gdf/login',
 					data : $scope.credentials
 				}).then(function(value) {
-
+					console.log('Success' + value.data)
 				}, function(reason) {
-
-				}, function(value) {
-
-				})
+					console.log(reason + " 1");
+				}) 
 			}
 		});
 
