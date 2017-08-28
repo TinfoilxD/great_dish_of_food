@@ -54,6 +54,14 @@ public class DishType {
 	public void setType(String type) {
 		this.type = type;
 	}
+	
+	public List<Dish> getDishes() {
+		return dishes;
+	}
+
+	public void setDishes(List<Dish> dishes) {
+		this.dishes = dishes;
+	}
 
 	@Override
 	public String toString() {

@@ -1,11 +1,11 @@
 package com.revature.gspj.gdf.dao;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +16,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.gspj.gdf.bean.Dish;
+import com.revature.gspj.gdf.bean.DishType;
 
 
 
@@ -26,7 +27,10 @@ import com.revature.gspj.gdf.bean.Dish;
 public class DishDAOTest extends AbstractTransactionalJUnit4SpringContextTests {
 	/*
 	 * List<Dish> getAllDishes();
-	 * List<Dish> getDishesByType();
+	 * Dish getDishById();
+	 * Dish getDishByName();
+	 * List<Dish> getDishesByType(Dishtype type);
+	 * List<DishType> getDishTypesForDish(Dish dish);
 	 * void createDish(Dish dish);
 	 * void editDish(Dish dish);
 	 * void deleteDish(Dish dish);
@@ -45,7 +49,39 @@ public class DishDAOTest extends AbstractTransactionalJUnit4SpringContextTests {
 	@Test
 	public void test1(){
 		List<Dish> dishes = testDAO.getAllDishes();
-		logger.trace(dishes);
 		assertTrue(dishes.size() > 0);
+	}
+	@Test
+	public void test2(){
+		Dish dish = testDAO.getDishById(1);
+		assertEquals(dish.getName(),"Orange Chicken");
+	}
+	@Test
+	public void test3(){
+		Dish dish = testDAO.getDishByName("Orange Chicken");
+		assertEquals(1, dish.getId());
+	}
+	
+	@Test
+	public void test4(){
+		String testName = "Durian Cheesecake";
+		Dish newDish = new Dish(0, 13.50, testName);
+		testDAO.createDish(newDish);
+		Dish savedDish = testDAO.getDishByName(testName);
+		assertEquals(newDish, savedDish);
+	}
+	@Test
+	public void test5(){
+		String testName = "Orange Chicken";
+		Dish savedDish = testDAO.getDishByName(testName);
+		testDAO.deleteDish(savedDish);
+	}
+	@Test
+	public void test6(){
+		String testName = "Orange Chicken";
+		Dish dish = testDAO.getDishByName(testName);
+		List<DishType> types = testDAO.getDishTypesForDish(dish);
+		logger.trace(types);
+		assertTrue(types.size() > 1);
 	}
 }
