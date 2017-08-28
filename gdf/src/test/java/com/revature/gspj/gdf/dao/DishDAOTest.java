@@ -33,7 +33,8 @@ public class DishDAOTest extends AbstractTransactionalJUnit4SpringContextTests {
 	 * 
 	 */
 	
-	private static Logger logger = Logger.getLogger(DishDAOTest.class);;
+	private static Logger logger = Logger.getLogger(DishDAOTest.class);
+	
 	@Autowired
 	private DishDAO testDAO;
 	

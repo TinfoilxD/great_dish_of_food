@@ -1,10 +1,14 @@
 package com.revature.gspj.gdf.bean;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -21,6 +25,10 @@ public class Dish {
 	private double price;
 	@Column(name="dish_name")
 	private String name;
+	@ManyToMany
+	@JoinTable(name="CATEGORIES")
+	List<DishType> types;
+	
 	public Dish() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -1,10 +1,13 @@
 package com.revature.gspj.gdf.bean;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,6 +22,8 @@ public class DishType {
 	private int id;
 	@Column(name="dish_type")
 	private String type;
+	@ManyToMany(mappedBy = "types")
+	private List<Dish> dishes;
 	
 	public DishType() {
 		super();
