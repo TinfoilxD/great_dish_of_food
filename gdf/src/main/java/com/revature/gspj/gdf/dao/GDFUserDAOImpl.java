@@ -22,7 +22,7 @@ public class GDFUserDAOImpl implements GDFUserDAO {
 		//ensure that username or password is not empty
 		if (username == null || password == null
 				||username.equals("") || password.equals(""))
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid Credentials");
 		
 		
 		
@@ -32,14 +32,21 @@ public class GDFUserDAOImpl implements GDFUserDAO {
 				.uniqueResult();
 		//check for password here 
 		PasswordManager checkPassword = new PasswordManager();
-		if(checkPassword.checkHashedPassword(password,user.getPassword()) == true){
+		if(user!=null){
+			if(checkPassword.checkHashedPassword(password,user.getPassword()) == true){
 			return user;
+			}
+			else{
+				throw new IllegalArgumentException("Invalid Credentials");
+			}
 		}
 		else{
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Invalid Credentials");
 		}
 		
 	}
+		
+	
 
 	@Override
 	@Transactional
