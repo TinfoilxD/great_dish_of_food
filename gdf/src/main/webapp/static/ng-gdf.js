@@ -38,7 +38,7 @@ angular.module('gdf').controller('loginContainer',
 				console.log("in controller")
 				$http({
 					method : 'POST',
-					url : '/gdf/loginAuthentication',
+					url : 'loginAuthentication',
 					data : $scope.credentials
 				}).then(function(value) {
 					console.log('Success' + value.data)

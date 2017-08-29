@@ -33,13 +33,7 @@ public class CredentialsController {
 		this.service = service;
 	}
 
-	 @RequestMapping(value = "/gdf/loginAuthentication", method = RequestMethod.GET)
-	    public String init(Model model) {
-	        model.addAttribute("msg", "Please Enter Your Login Details");
-	        return "login";
-	    }
-
-	@RequestMapping(value = "/gdf/loginAuthentication", method =  RequestMethod.POST,
+	@RequestMapping(value = "/loginAuthentication", method =  RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public GDFUser userLogin(@RequestBody Credentials credentials){
