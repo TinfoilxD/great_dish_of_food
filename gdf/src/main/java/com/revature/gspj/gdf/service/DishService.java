@@ -1,14 +1,16 @@
 package com.revature.gspj.gdf.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.gspj.gdf.bean.Dish;
 import com.revature.gspj.gdf.dao.DishDAO;
-import com.revature.gspj.gdf.dao.DishTypeDAO;
 
 @Service
+@Transactional
 public class DishService {
 	
 	@Autowired
@@ -18,8 +20,11 @@ public class DishService {
 		this.dao = dao;
 	}
 	
-	@Transactional
 	public void createDish(Dish dish){
 		dao.createDish(dish);
+	}
+	
+	public List<Dish> getAllDishes(){
+		return dao.getAllDishes();
 	}
 }

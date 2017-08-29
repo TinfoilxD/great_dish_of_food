@@ -20,6 +20,11 @@ angular.module('gdf').config(
 				templateUrl : 'dish_type_all.html',
 				controller : 'dishTypeAllController'
 			}).state({
+				name: "dishAll",
+				url: "/dishAll",
+				templateUrl: "dish_all.html",
+				controller: "dishAllController"
+			}).state({
 				name : 'dishCreate',
 				url : '/dishCreate',
 				templateUrl : 'dish_create.html',
@@ -83,7 +88,24 @@ angular.module('gdf').controller('dishTypeAllController',
 				})
 			}
 		});
+angular.module('gdf').controller('dishAllController',
+		function($scope, $http, $state,$document){
+	$document.ready(function(){
+		$scope.getAllDishes();
+	})
+	$scope.getAllDishes = function() {
+		$http({
+			method : 'GET',
+			url : 'dish/all'
+		}).then(function(value) {
+			$scope.allDishes = value.data;
+		}, function(reason) {
 
+		}, function(value) {
+
+		})
+	}
+});
 angular.module('gdf').controller('dishCreateController',
 		function($scope, $http, $state) {
 			$scope.createDish = function() {

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +13,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="DISH")
@@ -26,10 +29,11 @@ public class Dish {
 	private double price;
 	@Column(name="dish_name")
 	private String name;
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="CATEGORIES",
 		    joinColumns={@JoinColumn(name="dish_id")},
 		    inverseJoinColumns={@JoinColumn(name="dish_type_id")})
+	@JsonManagedReference
 	List<DishType> types;
 	
 	public Dish() {

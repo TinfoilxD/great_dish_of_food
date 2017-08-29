@@ -11,6 +11,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name="DISH_TYPE")
 public class DishType {
@@ -23,6 +25,7 @@ public class DishType {
 	@Column(name="dish_type")
 	private String type;
 	@ManyToMany(mappedBy = "types")
+	@JsonBackReference
 	private List<Dish> dishes;
 	
 	public DishType() {
