@@ -1,6 +1,7 @@
 package com.revature.gspj.gdf.bean;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,7 +35,7 @@ public class Dish {
 		    joinColumns={@JoinColumn(name="dish_id")},
 		    inverseJoinColumns={@JoinColumn(name="dish_type_id")})
 	@JsonManagedReference
-	List<DishType> types;
+	Set<DishType> types;
 	
 	public Dish() {
 		super();
@@ -65,10 +66,10 @@ public class Dish {
 		this.name = name;
 	}
 	
-	public List<DishType> getTypes() {
+	public Set<DishType> getTypes() {
 		return types;
 	}
-	public void setTypes(List<DishType> types) {
+	public void setTypes(Set<DishType> types) {
 		this.types = types;
 	}
 	@Override

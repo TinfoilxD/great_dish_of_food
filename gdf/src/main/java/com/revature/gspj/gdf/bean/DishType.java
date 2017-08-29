@@ -1,6 +1,7 @@
 package com.revature.gspj.gdf.bean;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,7 +27,7 @@ public class DishType {
 	private String type;
 	@ManyToMany(mappedBy = "types")
 	@JsonBackReference
-	private List<Dish> dishes;
+	private Set<Dish> dishes;
 	
 	public DishType() {
 		super();
@@ -58,11 +59,11 @@ public class DishType {
 		this.type = type;
 	}
 	
-	public List<Dish> getDishes() {
+	public Set<Dish> getDishes() {
 		return dishes;
 	}
 
-	public void setDishes(List<Dish> dishes) {
+	public void setDishes(Set<Dish> dishes) {
 		this.dishes = dishes;
 	}
 
