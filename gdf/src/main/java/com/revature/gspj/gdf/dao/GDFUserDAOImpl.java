@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.gspj.gdf.bean.GDFUser;
+import com.revature.gspj.gdf.password.PasswordManager;
 
 public class GDFUserDAOImpl implements GDFUserDAO {
 	
@@ -22,12 +23,22 @@ public class GDFUserDAOImpl implements GDFUserDAO {
 		if (username == null || password == null
 				||username.equals("") || password.equals(""))
 			throw new IllegalArgumentException();
-		//TODO exchange hash password here 
-		return (GDFUser) sessionFactory.getCurrentSession().
-				createQuery("FROM GDFUser where username = :username and password = :password")
+		
+		
+		
+		GDFUser user = (GDFUser) sessionFactory.getCurrentSession().
+				createQuery("FROM GDFUser where username = :username")
 				.setString("username",username)
-				.setString("password", password)
 				.uniqueResult();
+		//check for password here 
+		PasswordManager checkPassword = new PasswordManager();
+		if(checkPassword.checkHashedPassword(password,user.getPassword()) == true){
+			return user;
+		}
+		else{
+			throw new IllegalArgumentException();
+		}
+		
 	}
 
 	@Override
