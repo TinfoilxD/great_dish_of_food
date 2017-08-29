@@ -33,7 +33,8 @@ public class CredentialsController {
 		this.service = service;
 	}
 
-	@RequestMapping(value = "/loginAuthentication", method =  RequestMethod.POST,
+
+	@RequestMapping(value = "/gdf/loginAuthentication", method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public GDFUser userLogin(@RequestBody Credentials credentials){
@@ -43,22 +44,6 @@ public class CredentialsController {
 	
 
 	   
-	 
-//	    @RequestMapping(method = RequestMethod.POST)
-//	    public String submit(Model model, @ModelAttribute("loginBean") LoginBean loginBean) {
-//	        if (loginBean != null && loginBean.getUserName() != null & loginBean.getPassword() != null) {
-//	            if (loginBean.getUserName().equals("chandra") && loginBean.getPassword().equals("chandra123")) {
-//	                model.addAttribute("msg", "welcome" + loginBean.getUserName());
-//	                return "success";
-//	            } else {
-//	                model.addAttribute("error", "Invalid Details");
-//	                return "login";
-//	            }
-//	        } else {
-//	            model.addAttribute("error", "Please enter Details");
-//	            return "login";
-//	        }
-//	    }
 	
 
 }
