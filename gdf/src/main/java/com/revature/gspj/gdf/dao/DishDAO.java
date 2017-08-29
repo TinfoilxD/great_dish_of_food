@@ -14,6 +14,6 @@ public interface DishDAO {
 	void createDish(Dish dish);
 	void editDish(Dish dish);
 	void deleteDish(Dish dish);
-	void addDishTypeToDish(DishType type);
-	void removeDishTypeFromDish(DishType type);
+	void addDishTypeToDish(DishType type, Dish dish);
+	void removeDishTypeFromDish(DishType type, Dish dish);
 }

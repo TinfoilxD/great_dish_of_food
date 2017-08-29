@@ -2,6 +2,7 @@ package com.revature.gspj.gdf.dao;
 
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,29 +71,32 @@ public class DishDAOImpl implements DishDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<DishType> getDishTypesForDish(Dish dish) {
-		//return dish.getTypes();
-		
-		String hql = "select dt.id, dt.type from DishType dt inner join dt.dishes d";
+	public List<DishType> getDishTypesForDish(Dish dish) {		
+		String hql = "select dt.id, dt.type from DishType dt inner join dt.dishes d where d.id = :dishId";
 		return sessionFactory.getCurrentSession()
 				.createQuery(hql)
+				.setInteger("dishId",dish.getId())
 				.list();
-				
-//				return sessionFactory.getCurrentSession()
-//				.createCriteria(DishType.class)
-//				.createAlias("dishes", "dish")
-//				.list();
+
 	}
 
 	@Override
-	public void addDishTypeToDish(DishType type) {
-		// TODO Auto-generated method stub
+	public void addDishTypeToDish(DishType type, Dish dish) {
+		Session session = sessionFactory.getCurrentSession();
+		type.getDishes().add(dish);
+		dish.getTypes().add(type);
+		session.saveOrUpdate(type);
+		session.saveOrUpdate(dish);
 		
 	}
 
 	@Override
-	public void removeDishTypeFromDish(DishType type) {
-		// TODO Auto-generated method stub
+	public void removeDishTypeFromDish(DishType type, Dish dish) {
+		Session session = sessionFactory.getCurrentSession();
+		type.getDishes().remove(dish);
+		dish.getTypes().remove(type);
+		session.saveOrUpdate(type);
+		session.saveOrUpdate(dish);
 		
 	}
 
