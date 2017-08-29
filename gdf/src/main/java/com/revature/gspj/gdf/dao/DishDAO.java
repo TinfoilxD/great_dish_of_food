@@ -7,8 +7,8 @@ import com.revature.gspj.gdf.bean.DishType;
 
 public interface DishDAO {
 	List<Dish> getAllDishes();
-	List<Dish> getDishesByType(DishType type);
 	List<DishType> getDishTypesForDish(Dish dish);
+	List<Dish> getDishesByType(DishType type);
 	Dish getDishById(int id);
 	Dish getDishByName(String name);
 	void createDish(Dish dish);

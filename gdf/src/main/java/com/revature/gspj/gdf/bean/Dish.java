@@ -98,6 +98,10 @@ public class Dish {
 			return false;
 		return true;
 	}
+	@Override
+	public String toString() {
+		return "Dish [id=" + id + ", price=" + price + ", name=" + name + ", types=" + types + "]";
+	}
 	
 	
 

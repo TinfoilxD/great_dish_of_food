@@ -34,13 +34,16 @@ public class DishDAOTest extends AbstractTransactionalJUnit4SpringContextTests {
 	 * void createDish(Dish dish);
 	 * void editDish(Dish dish);
 	 * void deleteDish(Dish dish);
-	 * 
+	 * void addDishTypeToDish(DishType type, Dish dish);
+	 *void removeDishTypeFromDish(DishType type, Dish dish); 
 	 */
 	
 	private static Logger logger = Logger.getLogger(DishDAOTest.class);
 	
 	@Autowired
 	private DishDAO testDAO;
+	@Autowired
+	private DishTypeDAO testTypeDAO;
 	
 	public void setTestDAO(DishDAO testDAO) {
 		this.testDAO = testDAO;
@@ -84,4 +87,13 @@ public class DishDAOTest extends AbstractTransactionalJUnit4SpringContextTests {
 		logger.trace(types);
 		assertTrue(types.size() > 1);
 	}
+	@Test
+	public void test7(){
+		int testId = 1;
+		DishType type = testTypeDAO.getTypeFromId(testId);
+		List<Dish> dishes = testDAO.getDishesByType(type);
+		logger.trace(dishes);
+		assertTrue(dishes.size() > 0);
+	}
+
 }

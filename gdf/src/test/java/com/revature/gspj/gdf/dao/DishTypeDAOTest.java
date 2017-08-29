@@ -16,6 +16,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.gspj.gdf.bean.Dish;
 import com.revature.gspj.gdf.bean.DishType;
 import com.revature.gspj.gdf.context.GDFContextHelper;
 
@@ -54,4 +55,5 @@ public class DishTypeDAOTest extends AbstractTransactionalJUnit4SpringContextTes
 		assertTrue(types.size() > 0);
 		
 	}
+	
 }

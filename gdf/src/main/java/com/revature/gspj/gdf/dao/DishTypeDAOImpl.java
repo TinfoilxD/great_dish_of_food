@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.gspj.gdf.bean.Dish;
 import com.revature.gspj.gdf.bean.DishType;
 
 @Repository
@@ -50,5 +51,6 @@ public class DishTypeDAOImpl implements DishTypeDAO{
 		sessionFactory.getCurrentSession().saveOrUpdate(type);
 		
 	}
+
 
 }

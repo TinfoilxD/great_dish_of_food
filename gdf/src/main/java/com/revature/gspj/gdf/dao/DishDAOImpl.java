@@ -29,11 +29,6 @@ public class DishDAOImpl implements DishDAO {
 		return sessionFactory.getCurrentSession().createCriteria(Dish.class).list();
 	}
 
-	@Override
-	public List<Dish> getDishesByType(DishType type) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public void createDish(Dish dish) {
@@ -98,6 +93,17 @@ public class DishDAOImpl implements DishDAO {
 		session.saveOrUpdate(type);
 		session.saveOrUpdate(dish);
 		
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Dish> getDishesByType(DishType type) {
+		String hql = "select d.id, d.name, d.price from Dish d inner join d.types dt where dt.id = :dishTypeId";
+		return sessionFactory.getCurrentSession()
+				.createQuery(hql)
+				.setInteger("dishTypeId", type.getId())
+				.list();
+
 	}
 
 }
