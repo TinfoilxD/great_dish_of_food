@@ -20,6 +20,7 @@ public class GDFUserService {
 	}
 
 	public GDFUser authenticate(Credentials credentials) {
+		
 		return dao.getUser(credentials.getUsername(), credentials.getPassword());
 		
 
