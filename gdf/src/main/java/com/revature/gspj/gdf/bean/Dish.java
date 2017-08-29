@@ -1,6 +1,5 @@
 package com.revature.gspj.gdf.bean;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,7 +14,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="DISH")
@@ -34,7 +33,7 @@ public class Dish {
 	@JoinTable(name="CATEGORIES",
 		    joinColumns={@JoinColumn(name="dish_id")},
 		    inverseJoinColumns={@JoinColumn(name="dish_type_id")})
-	@JsonManagedReference
+	@JsonIgnore
 	Set<DishType> types;
 	
 	public Dish() {
