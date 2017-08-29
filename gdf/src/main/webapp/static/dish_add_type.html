@@ -1,0 +1,7 @@
+<div class="container">
+	<select class="dropdown" ng-model="currentDish" ng-options="dish.name for dish in allDishes">
+	</select>
+	<select class="dropdown" ng-model="currentType" ng-options="type.type for type in allDishTypes">
+	</select>
+	<button ng-click="addTypeToDish()">Add Type</button>
+</div>
