@@ -26,7 +26,7 @@ angular.module('gdf').config(
 				controller : 'dishCreateController'
 			}).state({
 				name : 'loginContainer',
-				url : '/login',
+				url : '/loginAuthentication',
 				templateUrl : 'login.html',
 				controller : 'loginContainer'
 			})
@@ -38,7 +38,7 @@ angular.module('gdf').controller('loginContainer',
 				console.log("in controller")
 				$http({
 					method : 'POST',
-					url : '/gdf/login',
+					url : '/gdf/loginAuthentication',
 					data : $scope.credentials
 				}).then(function(value) {
 					console.log('Success' + value.data)
