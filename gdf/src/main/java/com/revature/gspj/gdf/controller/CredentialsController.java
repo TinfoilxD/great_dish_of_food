@@ -34,11 +34,10 @@ public class CredentialsController {
 	}
 
 
-	@RequestMapping(value = "/gdf/loginAuthentication", method = RequestMethod.POST,
+	@RequestMapping(value = "/loginAuthentication", method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public GDFUser userLogin(@RequestBody Credentials credentials){
-		System.out.println("in conrtroller");
 		return service.authenticate(credentials);
 	}
 	
