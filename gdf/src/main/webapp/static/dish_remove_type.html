@@ -1,0 +1,17 @@
+<div class="container">
+
+<table>
+	<tr><th>Dish</th><th>Types</th></tr>
+	<tr ng-repeat = "dish in allDishes">
+		<td>{{dish.name}}</td><td><button ng-click="getTypesForDish(dish: dish)">Edit</button></td>
+	</tr>
+</table>
+
+<table>
+	<tr><th>Type</th><th>Remove</th></tr>
+	<tr ng-repeat="type for selectedDishTypes">
+		<td>{{type.type}}</td><td>X</td>
+	</tr>
+</table>
+
+</div>

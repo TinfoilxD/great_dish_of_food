@@ -35,6 +35,11 @@ angular.module('gdf').config(
 				templateUrl : 'dish_add_type.html',
 				controller : 'dishAddTypeController'
 			}).state({
+				name: 'dishRemoveType',
+				url: '/dishRemoveType',
+				templateUrl: 'dish_remove_type.html',
+				controller: 'dishRemoveTypeController'
+			}).state({
 				name : 'loginContainer',
 				url : '/loginAuthentication',
 				templateUrl : 'login.html',
@@ -179,4 +184,36 @@ angular.module('gdf').controller('dishAddTypeController',
 		})
 	}
 	
+});
+angular.module('gdf').controll('dishRemoveTypeController',function($scope, $http, $document){
+	
+	$document.ready(function(){
+		$scope.getAllDishes();
+	})
+	
+	$scope.getAllDishes = function() {
+		$http({
+			method : 'GET',
+			url : 'dish/all'
+		}).then(function(value) {
+			$scope.allDishes = value.data;
+		}, function(reason) {
+
+		}, function(value) {
+
+		})
+	}
+	$scope.getTypesForDish = function(dish){
+		$http({
+			method: 'POST',
+			url: 'dish/getTypes',
+			data: dish
+		}).then(function(value) {
+			$scope.selectedDishTypes = value.data;
+		}, function(reason) {
+			
+		}, function(value) {
+			
+		})
+	}
 });
