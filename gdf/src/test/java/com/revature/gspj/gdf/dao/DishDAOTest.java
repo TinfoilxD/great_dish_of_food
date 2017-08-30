@@ -84,13 +84,14 @@ public class DishDAOTest extends AbstractTransactionalJUnit4SpringContextTests {
 		String testName = "Orange Chicken";
 		Dish dish = testDAO.getDishByName(testName);
 		List<DishType> types = testDAO.getDishTypesForDish(dish);
-		logger.trace(types);
+		logger.trace("getDishTypesforDish" + types);
 		assertTrue(types.size() > 1);
 	}
 	@Test
 	public void test7(){
 		int testId = 1;
 		DishType type = testTypeDAO.getTypeFromId(testId);
+		logger.trace("type toString" + type);
 		List<Dish> dishes = testDAO.getDishesByType(type);
 		logger.trace(dishes);
 		assertTrue(dishes.size() > 0);

@@ -234,10 +234,12 @@ angular.module('gdf').controller('dishRemoveTypeController',function($scope, $ht
 			data: dish
 		}).then(function(value) {
 			$scope.selectedDishTypes = value.data;
+			console.log($scope.selectedDishTypes);
 		}, function(reason) {
 			
 		}, function(value) {
 			
 		})
 	}
+	
 });
