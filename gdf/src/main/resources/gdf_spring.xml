@@ -47,9 +47,7 @@
 	<bean name="userTypeDAO" class="com.revature.gspj.gdf.dao.UserTypeDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
-	<bean name="orderStatusDAO" class="com.revature.gspj.gdf.dao.OrderStatusDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory"/>
-	</bean>
+
 	<bean name="gdfUserDAO" class="com.revature.gspj.gdf.dao.GDFUserDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
