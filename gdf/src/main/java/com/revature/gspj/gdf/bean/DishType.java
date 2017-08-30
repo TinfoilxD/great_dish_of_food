@@ -1,6 +1,5 @@
 package com.revature.gspj.gdf.bean;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -12,7 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="DISH_TYPE")
@@ -26,7 +25,7 @@ public class DishType {
 	@Column(name="dish_type")
 	private String type;
 	@ManyToMany(mappedBy = "types")
-	@JsonBackReference
+	@JsonIgnore
 	private Set<Dish> dishes;
 	
 	public DishType() {

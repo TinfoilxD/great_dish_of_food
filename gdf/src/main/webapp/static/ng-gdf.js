@@ -154,6 +154,8 @@ angular.module('gdf').controller('dishCreateController',
 angular.module('gdf').controller('dishAddTypeController',
 		function($scope, $http, $document) {
 	
+	$scope.newCat = {}
+	
 	$document.ready(function() {
 		$scope.getAllDishes();
 		$scope.getAllDishTypes();
@@ -165,7 +167,7 @@ angular.module('gdf').controller('dishAddTypeController',
 			url : 'dish/all'
 		}).then(function(value) {
 			$scope.allDishes = value.data;
-			$scope.currentDish = $scope.allDishes[0]; //default value
+			$scope.newCat.dish = $scope.allDishes[0]; //default value
 		}, function(reason) {
 
 		}, function(value) {
@@ -179,11 +181,25 @@ angular.module('gdf').controller('dishAddTypeController',
 			url : 'dishType/all'
 		}).then(function(value) {
 			$scope.allDishTypes = value.data;
-			$scope.currentType = $scope.allDishTypes[0]; //default value
+			$scope.newCat.type = $scope.allDishTypes[0]; //default value
 		}, function(reason) {
 
 		}, function(value) {
 
+		})
+	}
+	
+	$scope.addTypeToDish = function(){
+		$http({
+			method : 'POST',
+			url : 'dish/addType',
+			data : $scope.newCat
+		}).then(function(value) {
+			
+		}, function(reason) {
+			
+		}, function(value) {
+			
 		})
 	}
 	

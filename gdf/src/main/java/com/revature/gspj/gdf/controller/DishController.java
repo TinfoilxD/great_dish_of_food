@@ -6,12 +6,15 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.gspj.gdf.bean.Dish;
+import com.revature.gspj.gdf.bean.DishType;
 import com.revature.gspj.gdf.service.DishService;
+import com.revature.gspj.gdf.wrapper.DishDishType;
 
 @Controller
 public class DishController {
@@ -27,5 +30,20 @@ public class DishController {
 	@ResponseBody
 	public List<Dish> getAllDishes(){
 		return service.getAllDishes();
+	}
+	
+	@RequestMapping(value = "/dish/create", method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void createDish(@RequestBody Dish dish){
+		service.createDish(dish);
+	}
+	
+	
+	@RequestMapping(value = "/dish/addType", method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void addDishTypeToDish(@RequestBody DishDishType ddt){
+		service.addDishTypeToDish(ddt);
 	}
 }
