@@ -2,6 +2,8 @@ package com.revature.gspj.gdf.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,17 +35,31 @@ public class CredentialsController {
 	public void setService(GDFUserService service) {
 		this.service = service;
 	}
-
-
+	
 	@RequestMapping(value = "/loginAuthentication", method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public GDFUser userLogin(@RequestBody Credentials credentials){
-		return service.authenticate(credentials);
+	public GDFUser userLogin(@RequestBody Credentials credentials,HttpServletResponse response){
+		try{
+			GDFUser user = service.authenticate(credentials);
+			return user;
+		}catch(IllegalArgumentException e){
+			logger.debug("message", e);
+			response.setStatus(401);
+		}
+		return null;
+		
+		
+		
+		
 	}
+
+	
+}
+
 	
 
 	   
 	
 
-}
+

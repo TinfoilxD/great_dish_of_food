@@ -44,6 +44,11 @@ angular.module('gdf').config(
 				url : '/loginAuthentication',
 				templateUrl : 'login.html',
 				controller : 'loginContainer'
+			}).state({
+				name : 'orderStatusAll',
+				url : '/orderStatusAll',
+				templateUrl : 'orderStatus.html',
+				controller : 'orderStatusController'
 			})
 		});
 
@@ -62,6 +67,25 @@ angular.module('gdf').controller('loginContainer',
 				})
 			}
 		});
+
+angular.module('gdf').controller('orderStatusController',
+		function($scope, $http, $state, $document) {
+	$document.ready(function() {
+		$scope.getAllOrderStatus();
+	})
+	$scope.getAllOrderStatus = function() {
+		$http({
+			method : 'GET',
+			url : 'orderStatus/all'
+		}).then(function(value) {
+			$scope.allOrderStatus = value.data;
+		}, function(reason) {
+
+		}, function(value) {
+
+		})
+	}
+});
 
 angular.module('gdf').controller('dishTypeCreateController',
 		function($scope, $http, $state, $rootScope) {
