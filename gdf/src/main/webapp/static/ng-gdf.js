@@ -209,7 +209,7 @@ angular.module('gdf').controller('dishAddTypeController',
 	}
 	
 });
-angular.module('gdf').controll('dishRemoveTypeController',function($scope, $http, $document){
+angular.module('gdf').controller('dishRemoveTypeController',function($scope, $http, $document){
 	
 	$document.ready(function(){
 		$scope.getAllDishes();
