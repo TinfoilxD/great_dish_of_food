@@ -14,7 +14,6 @@ public interface OrderDAO {
 	List<Order> getOrdersForUser(GDFUser user);
 	List<Order> getOrdersForStatus(OrderStatus status);
 	List<Order> getOrdersForType(OrderType type);
-	List<Dish> getDishesForOrder(Order order);
 	Order getOrderFromId(int id);
 	void editOrder(Order order);
 	void deleteOrder(Order order);

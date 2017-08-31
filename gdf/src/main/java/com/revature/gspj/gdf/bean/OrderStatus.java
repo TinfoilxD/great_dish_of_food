@@ -17,8 +17,12 @@ public class OrderStatus implements Serializable{
 	@Id
 	@Column(name="order_status_id")
 	private int id;
+	
+	
 	@Column(name="order_status")
 	private String status;
+	
+	
 	
 	public OrderStatus() {
 		super();

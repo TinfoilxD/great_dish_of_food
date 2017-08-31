@@ -2,7 +2,9 @@ package com.revature.gspj.gdf.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,51 +33,49 @@ public class OrderDAOImpl implements OrderDAO {
 		return sessionFactory.getCurrentSession().createCriteria(Order.class).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Order> getOrdersForUser(GDFUser user) {
-		// TODO Auto-generated method stub
-		return null;
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Order.class);
+		return cr.add(Restrictions.eq("user.id",user.getId())).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Order> getOrdersForStatus(OrderStatus status) {
-		// TODO Auto-generated method stub
-		return null;
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Order.class);
+		return cr.add(Restrictions.eq("status.id",status.getId())).list();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Order> getOrdersForType(OrderType type) {
-		// TODO Auto-generated method stub
-		return null;
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Order.class);
+		return cr.add(Restrictions.eq("type.id",type.getId())).list();
 	}
 
-	@Override
-	public List<Dish> getDishesForOrder(Order order) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Order getOrderFromId(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Order.class);
+		return (Order) cr.add(Restrictions.eq("id",id)).uniqueResult();
 	}
 
 	@Override
 	public void editOrder(Order order) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(order);
 
 	}
 
 	@Override
 	public void deleteOrder(Order order) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().delete(order);
 
 	}
 
 	@Override
 	public void createOrder(Order order) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().save(order);
 
 	}
 

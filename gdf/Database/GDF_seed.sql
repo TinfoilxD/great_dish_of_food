@@ -127,12 +127,12 @@ INSERT INTO gdf_user (
     user_type_id
 ) VALUES (
     1,
-    'pjakson',
+    'pjackson',
     'Patrick',
     'Jackson',
     'pjackson@gmail.com',
-    '1234',
-    1
+    '$2a$10$QN3oZuo0TAHS0FKzmijkl./Mu6LXDVip3WYJo242I2hnM2L8FWQD2',
+    2
 );
 INSERT INTO gdf_user (
     user_id,
@@ -148,7 +148,24 @@ INSERT INTO gdf_user (
     'Tin',
     'Van',
     'tinfoil@gmail.com',
-    '1234',
+    '$2a$10$EIYGT/TPJugusuKvbtsE5eBe1BO2YajV4qWpYUmaH0bWR91vhX0ae',
+    2
+); 
+INSERT INTO gdf_user (
+    user_id,
+    username,
+    user_firstname,
+    user_lastname,
+    user_email,
+    user_password,
+    user_type_id
+) VALUES (
+    3,
+    'admin',
+    'Tim',
+    'Hunt',
+    'admin@gmail.com',
+    '$2a$10$VgkHIhT8Vt661ExClSWsDOtYlIN5WKvLclZzagz8X23atR2Y9VHCi',
     1
 );
 
