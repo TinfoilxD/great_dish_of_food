@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -25,16 +26,26 @@ public class Dish {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="dishSeq")
 	@SequenceGenerator(name="dishSeq", sequenceName="DISH_ID_SEQ")
 	private int id;
+	
+	
 	@Column(name="dish_price")
 	private double price;
+	
+	
 	@Column(name="dish_name")
 	private String name;
+	
+	
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="CATEGORIES",
 		    joinColumns={@JoinColumn(name="dish_id")},
 		    inverseJoinColumns={@JoinColumn(name="dish_type_id")})
 	@JsonIgnore
-	Set<DishType> types;
+	private Set<DishType> types;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "dish")
+	private Set<OrderLine> orderLines;
 	
 	public Dish() {
 		super();
@@ -70,6 +81,14 @@ public class Dish {
 	}
 	public void setTypes(Set<DishType> types) {
 		this.types = types;
+	}
+	
+	
+	public Set<OrderLine> getOrderLines() {
+		return orderLines;
+	}
+	public void setOrderLines(Set<OrderLine> orderLines) {
+		this.orderLines = orderLines;
 	}
 	@Override
 	public int hashCode() {
