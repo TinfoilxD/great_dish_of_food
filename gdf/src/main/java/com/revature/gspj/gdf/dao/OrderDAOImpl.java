@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.revature.gspj.gdf.bean.Dish;
 import com.revature.gspj.gdf.bean.GDFUser;
 import com.revature.gspj.gdf.bean.Order;
+import com.revature.gspj.gdf.bean.OrderLine;
 import com.revature.gspj.gdf.bean.OrderStatus;
 import com.revature.gspj.gdf.bean.OrderType;
 
@@ -76,6 +77,24 @@ public class OrderDAOImpl implements OrderDAO {
 	public void createOrder(Order order) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void addOrderLineToOrder(OrderLine orderLine) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removeOrderLineFromOrder(OrderLine orderLine) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<OrderLine> getOrderLinesForOrder(Order ordeR) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -109,8 +109,9 @@ public class DishDAOTest extends AbstractTransactionalJUnit4SpringContextTests {
 		String name = "Orange Chicken";
 		Dish dish = testDAO.getDishByName(name);
 		List<OrderLine> orderLines = testDAO.getOrderLinesForDish(dish);
+		logger.trace(orderLines);
 		assertTrue(orderLines.size() > 0);
-		assertTrue(orderLines.get(0).getClass().isInstance(OrderLine.class));
+		assertTrue(orderLines.get(0) instanceof OrderLine);
 	}
 	
 
