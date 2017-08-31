@@ -1,7 +1,9 @@
 package com.revature.gspj.gdf.dao;
 
+import java.util.LinkedList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
@@ -67,12 +69,13 @@ public class DishDAOImpl implements DishDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<DishType> getDishTypesForDish(Dish dish) {		
-		String hql = "select dt.id, dt.type from DishType dt inner join dt.dishes d where d.id = :dishId";
 		return sessionFactory.getCurrentSession()
-				.createQuery(hql)
-				.setInteger("dishId",dish.getId())
+				.createCriteria(DishType.class)
+				.createAlias("dishes", "dish")
+					.add(Restrictions.eq("dish.id", dish.getId()))
+				.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
 				.list();
-
+		
 	}
 
 	@Override

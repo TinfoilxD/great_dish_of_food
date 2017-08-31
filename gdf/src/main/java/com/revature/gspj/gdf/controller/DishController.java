@@ -46,4 +46,11 @@ public class DishController {
 	public void addDishTypeToDish(@RequestBody DishDishType ddt){
 		service.addDishTypeToDish(ddt);
 	}
+	
+	@RequestMapping(value = "/dish/getTypes", method= RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<DishType> getDishTypesForDish(@RequestBody Dish dish){
+		return service.getDishTypesForDish(dish);
+	}
 }

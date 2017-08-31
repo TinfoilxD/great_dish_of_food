@@ -42,4 +42,7 @@ public class DishService {
 		DishType type = typeDAO.getTypeFromId(dishTypeId);
 		dao.addDishTypeToDish(type, dish);
 	}
+	public List<DishType> getDishTypesForDish(Dish dish){
+		return dao.getDishTypesForDish(dish);
+	}
 }

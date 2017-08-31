@@ -1,5 +1,4 @@
 
-
 angular.module('gdf').controller('loginContainer',
 		function($scope, $http, $state) {
 			$scope.login = function() {
@@ -132,6 +131,40 @@ angular.module('gdf').controller('dishAddTypeController',
 			data : $scope.newCat
 		}).then(function(value) {
 			
+		}, function(reason) {
+			
+		}, function(value) {
+			
+		})
+	}
+	
+});
+angular.module('gdf').controller('dishRemoveTypeController',function($scope, $http, $document){
+	
+	$document.ready(function(){
+		$scope.getAllDishes();
+	})
+	
+	$scope.getAllDishes = function() {
+		$http({
+			method : 'GET',
+			url : 'dish/all'
+		}).then(function(value) {
+			$scope.allDishes = value.data;
+		}, function(reason) {
+
+		}, function(value) {
+
+		})
+	}
+	$scope.getTypesForDish = function(dish){
+		$http({
+			method: 'POST',
+			url: 'dish/getTypes',
+			data: dish
+		}).then(function(value) {
+			$scope.selectedDishTypes = value.data;
+			console.log($scope.selectedDishTypes);
 		}, function(reason) {
 			
 		}, function(value) {
