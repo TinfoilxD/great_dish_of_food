@@ -1,5 +1,7 @@
 <div class="container">
 
+<select class="dropdown" ng-model="selectedType" ng-options="type.type for type in allDishTypes">
+	</select>
 <table>
 <tr><th>ID</th><th>Name</th><th>Price</th></tr>
 <tr ng-repeat="dish in allDishes">
