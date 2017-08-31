@@ -141,6 +141,8 @@ angular.module('gdf').controller('dishAddTypeController',
 });
 angular.module('gdf').controller('dishRemoveTypeController',function($scope, $http, $document){
 	
+	$scope.selCat = {}
+	
 	$document.ready(function(){
 		$scope.getAllDishes();
 	})
@@ -158,6 +160,7 @@ angular.module('gdf').controller('dishRemoveTypeController',function($scope, $ht
 		})
 	}
 	$scope.getTypesForDish = function(dish){
+		$scope.selCat.dish = dish;
 		$http({
 			method: 'POST',
 			url: 'dish/getTypes',
@@ -171,5 +174,18 @@ angular.module('gdf').controller('dishRemoveTypeController',function($scope, $ht
 			
 		})
 	}
-	
+	$scope.removeTypeFromDish = function(type){
+		$scope.selCat.type = type;
+		$http({
+			method: 'POST',
+			url: 'dish/removeType',
+			data: $scope.selCat
+		}).then(function(value) {
+			
+		}, function(reason) {
+			
+		}, function(value) {
+			
+		})
+	}
 });

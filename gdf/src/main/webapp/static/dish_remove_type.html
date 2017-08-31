@@ -10,7 +10,7 @@
 <table>
 	<tr><th>Type</th><th>Remove</th></tr>
 	<tr ng-repeat="type in selectedDishTypes">
-		<td>{{type.type}}</td><td>X</td>
+		<td>{{type.type}}</td><td><button ng-click="removeTypeFromDish(type)">X</button></td>
 	</tr>
 </table>
 

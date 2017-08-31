@@ -45,4 +45,11 @@ public class DishService {
 	public List<DishType> getDishTypesForDish(Dish dish){
 		return dao.getDishTypesForDish(dish);
 	}
+	public void removeDishTypeFromDish(DishDishType ddt){
+		int dishId = ddt.getDish().getId();
+		int dishTypeId = ddt.getType().getId();
+		Dish dish = dao.getDishById(dishId);
+		DishType type = typeDAO.getTypeFromId(dishTypeId);
+		dao.removeDishTypeFromDish(type, dish);
+	}
 }
