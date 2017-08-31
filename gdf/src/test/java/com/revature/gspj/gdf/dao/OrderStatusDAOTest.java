@@ -10,6 +10,12 @@ import org.hibernate.SessionFactory;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.transaction.TransactionConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.gspj.gdf.bean.OrderStatus;
 import com.revature.gspj.gdf.context.GDFContextHelper;
@@ -17,6 +23,11 @@ import com.revature.gspj.gdf.dao.DishTypeDAO;
 import com.revature.gspj.gdf.dao.OrderStatusDAO;
 import com.revature.gspj.gdf.dao.UserTypeDAO;
 
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:gdf_spring.xml"})
+@TransactionConfiguration
+@Transactional
 public class OrderStatusDAOTest {
 
 	/*
@@ -25,15 +36,18 @@ public class OrderStatusDAOTest {
 	 * OrderStatus getStatusFromId(int id);
 	 */
 	
-	private static Logger logger;
-	private static OrderStatusDAO testDAO;
+	@Autowired
+	private OrderStatusDAO testDAO;
+	private static Logger logger = Logger.getLogger(OrderStatusDAOTest.class);;
 	
-	@BeforeClass
-	public static void setUp(){
-		logger = Logger.getLogger(OrderStatusDAOTest.class);
-		//testDAO = (OrderStatusDAO) GDFContextHelper.getContext().getBean(OrderStatusDAO.class);
-		testDAO = (OrderStatusDAO) GDFContextHelper.getContext().getBean("orderStatusDAO");
+	public void setTestDAO(OrderStatusDAO testDAO) {
+		this.testDAO = testDAO;
 	}
+	
+	
+	 
+		//testDAO = (OrderStatusDAO) GDFContextHelper.getContext().getBean(OrderStatusDAO.class);
+	
 	
 	
 	@Test

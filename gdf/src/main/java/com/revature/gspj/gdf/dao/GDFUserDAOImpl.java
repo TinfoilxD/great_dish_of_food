@@ -11,6 +11,7 @@ public class GDFUserDAOImpl implements GDFUserDAO {
 	
 	@Autowired
 	private SessionFactory sessionFactory;
+
 	
 	public void setSessionFactory(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
@@ -31,9 +32,9 @@ public class GDFUserDAOImpl implements GDFUserDAO {
 				.setString("username",username)
 				.uniqueResult();
 		//check for password here 
-		PasswordManager checkPassword = new PasswordManager();
+		//PasswordManager checkPassword = new PasswordManager();
 		if(user!=null){
-			if(checkPassword.checkHashedPassword(password,user.getPassword()) == true){
+			if(PasswordManager.checkHashedPassword(password,user.getPassword()) == true){
 			return user;
 			}
 			else{
