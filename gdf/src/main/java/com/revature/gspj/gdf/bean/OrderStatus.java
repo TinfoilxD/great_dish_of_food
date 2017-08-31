@@ -1,5 +1,7 @@
 package com.revature.gspj.gdf.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,7 +12,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="ORDER_STATUS")
-public class OrderStatus {
+public class OrderStatus implements Serializable{
 
 	@Id
 	@Column(name="order_status_id")

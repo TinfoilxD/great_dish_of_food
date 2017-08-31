@@ -1,5 +1,6 @@
 package com.revature.gspj.gdf.bean;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="DISH_TYPE")
-public class DishType {
+public class DishType implements Serializable {
 	
 	@Id
 	@Column(name="dish_type_id")

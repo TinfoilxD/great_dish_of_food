@@ -1,5 +1,6 @@
 package com.revature.gspj.gdf.bean;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -19,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="ORDERS")
-public class Order {
+public class Order implements Serializable {
 	
 	@Id
 	@Column(name="order_id")

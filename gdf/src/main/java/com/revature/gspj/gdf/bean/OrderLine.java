@@ -17,9 +17,6 @@ import javax.persistence.Table;
 public class OrderLine implements Serializable{
 	
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7656508497606832699L; //needed for idclass composite key
 	
 	
@@ -27,7 +24,7 @@ public class OrderLine implements Serializable{
 	@Column(name="order_line_id")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="orderLineSeq")
 	@SequenceGenerator(name="orderLineSeq", sequenceName="ORDER_LINE_ID_SEQ")
-	private int orderLineId;
+	private int id;
 	
 	
 	
@@ -50,12 +47,15 @@ public class OrderLine implements Serializable{
 	public OrderLine() {
 		super();
 	}
-	public int getOrderLineId() {
-		return orderLineId;
+	
+	public int getId() {
+		return id;
 	}
-	public void setOrderLineId(int orderLineId) {
-		this.orderLineId = orderLineId;
+
+	public void setId(int id) {
+		this.id = id;
 	}
+
 	public Order getOrder() {
 		return order;
 	}

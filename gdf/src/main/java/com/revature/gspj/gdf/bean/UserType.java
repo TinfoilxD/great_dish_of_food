@@ -1,5 +1,7 @@
 package com.revature.gspj.gdf.bean;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -7,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="USER_TYPE")
-public class UserType {
+public class UserType implements Serializable {
 		@Id
 		@Column(name="user_type_id")
 		private int id;

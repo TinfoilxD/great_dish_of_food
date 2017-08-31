@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.gspj.gdf.bean.Dish;
 import com.revature.gspj.gdf.bean.DishType;
+import com.revature.gspj.gdf.bean.OrderLine;
 
 
 
@@ -35,7 +36,8 @@ public class DishDAOTest extends AbstractTransactionalJUnit4SpringContextTests {
 	 * void editDish(Dish dish);
 	 * void deleteDish(Dish dish);
 	 * void addDishTypeToDish(DishType type, Dish dish);
-	 *void removeDishTypeFromDish(DishType type, Dish dish); 
+	 * void removeDishTypeFromDish(DishType type, Dish dish); 
+	 * List<OrderLine> getOrderLinesForDish(Dish dish);
 	 */
 	
 	private static Logger logger = Logger.getLogger(DishDAOTest.class);
@@ -101,6 +103,14 @@ public class DishDAOTest extends AbstractTransactionalJUnit4SpringContextTests {
 		DishType type = testTypeDAO.getTypeFromId(4);
 		Dish dish = testDAO.getDishByName("Orange Chicken");
 		testDAO.addDishTypeToDish(type, dish);
+	}
+	@Test
+	public void test9(){
+		String name = "Orange Chicken";
+		Dish dish = testDAO.getDishByName(name);
+		List<OrderLine> orderLines = testDAO.getOrderLinesForDish(dish);
+		assertTrue(orderLines.size() > 0);
+		assertTrue(orderLines.get(0).getClass().isInstance(OrderLine.class));
 	}
 	
 

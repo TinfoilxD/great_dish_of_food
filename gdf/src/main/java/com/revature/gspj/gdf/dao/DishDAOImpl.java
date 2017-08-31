@@ -1,12 +1,12 @@
 package com.revature.gspj.gdf.dao;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.AliasToBeanResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -114,10 +114,13 @@ public class DishDAOImpl implements DishDAO {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderLine> getOrderLinesForDish(Dish dish) {
-		// TODO Auto-generated method stub
-		return null;
+		return sessionFactory.getCurrentSession()
+				.createCriteria(OrderLine.class)
+				//	.add(Restrictions.eq("dish.id", dish.getId()))
+				.list();
 	}
 
 }
