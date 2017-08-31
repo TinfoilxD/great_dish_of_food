@@ -21,5 +21,5 @@ public interface OrderDAO {
 	void createOrder(Order order);
 	void addOrderLineToOrder(OrderLine orderLine);
 	void removeOrderLineFromOrder(OrderLine orderLine);
-	List<OrderLine> getOrderLinesForOrder(Order ordeR);
+	List<OrderLine> getOrderLinesForOrder(Order order);
 }

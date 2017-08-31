@@ -8,7 +8,7 @@ angular.module('gdf').controller('loginContainer',
 					url : 'loginAuthentication',
 					data : $scope.credentials
 				}).then(function(value) {
-					console.log('Success' + value.data)
+					console.log(value.data)
 				}, function(reason) {
 					console.log(reason + " 1");
 				})
