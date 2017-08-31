@@ -2,6 +2,7 @@ package com.revature.gspj.gdf.dao;
 
 import java.util.List;
 
+import com.revature.gspj.gdf.bean.Dish;
 import com.revature.gspj.gdf.bean.DishType;
 import com.revature.gspj.gdf.bean.GDFUser;
 import com.revature.gspj.gdf.bean.Order;
@@ -13,8 +14,9 @@ public interface OrderDAO {
 	List<Order> getOrdersForUser(GDFUser user);
 	List<Order> getOrdersForStatus(OrderStatus status);
 	List<Order> getOrdersForType(OrderType type);
-	List<DishType> getDishTypesForOrder(Order order);
+	List<Dish> getDishesForOrder(Order order);
 	Order getOrderFromId(int id);
 	void editOrder(Order order);
 	void deleteOrder(Order order);
+	void createOrder(Order order);
 }
