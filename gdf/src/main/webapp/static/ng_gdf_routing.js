@@ -1,6 +1,3 @@
-/**
- * 
- */
 
 angular.module('gdf', [ 'ui.router', 'ui.bootstrap', 'ui.bootstrap.modal' ]);
 angular.module('gdf').config(
@@ -38,6 +35,11 @@ angular.module('gdf').config(
 				url : '/dishAddType',
 				templateUrl : 'dish_add_type.html',
 				controller : 'dishAddTypeController'
+			}).state({
+				name: 'dishRemoveType',
+				url: '/dishRemoveType',
+				templateUrl: 'dish_remove_type.html',
+				controller: 'dishRemoveTypeController'
 			}).state({
 				name : 'loginContainer',
 				url : '/loginAuthentication',

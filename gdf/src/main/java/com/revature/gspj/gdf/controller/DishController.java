@@ -53,4 +53,11 @@ public class DishController {
 	public List<DishType> getDishTypesForDish(@RequestBody Dish dish){
 		return service.getDishTypesForDish(dish);
 	}
+	
+	@RequestMapping(value = "/dish/removeType", method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void removeDishTypeFromDish(@RequestBody DishDishType ddt){
+		service.removeDishTypeFromDish(ddt);
+	}
 }
