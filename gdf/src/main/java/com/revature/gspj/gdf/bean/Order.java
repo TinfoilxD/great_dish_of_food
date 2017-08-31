@@ -2,6 +2,7 @@ package com.revature.gspj.gdf.bean;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -30,11 +31,11 @@ public class Order implements Serializable {
 	
 	
 	@Column(name="order_submitted")
-	private LocalDateTime submitted;
+	private Calendar submitted;
 	
 	
 	@Column(name="order_resolved")
-	private LocalDateTime resolved;
+	private Calendar resolved;
 	
 	
 	@ManyToOne
@@ -66,16 +67,17 @@ public class Order implements Serializable {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public LocalDateTime getSubmitted() {
+    
+	public Calendar getSubmitted() {
 		return submitted;
 	}
-	public void setSubmitted(LocalDateTime submitted) {
+	public void setSubmitted(Calendar submitted) {
 		this.submitted = submitted;
 	}
-	public LocalDateTime getResolved() {
+	public Calendar getResolved() {
 		return resolved;
 	}
-	public void setResolved(LocalDateTime resolved) {
+	public void setResolved(Calendar resolved) {
 		this.resolved = resolved;
 	}
 	public OrderType getType() {
