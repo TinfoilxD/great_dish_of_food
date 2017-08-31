@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  * Used mainly for test classes.
  * 
  */
+@Deprecated
 public class GDFContextHelper {
 	
 	private static ApplicationContext context = new ClassPathXmlApplicationContext("gdf_spring.xml");

@@ -103,6 +103,7 @@ public class Order {
 	public void setOrderLines(Set<OrderLine> orderLines) {
 		this.orderLines = orderLines;
 	}
+	
 	@Override
 	public String toString() {
 		return "Order [id=" + id + ", submitted=" + submitted + ", resolved=" + resolved + ", type=" + type

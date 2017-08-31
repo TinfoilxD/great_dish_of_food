@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.revature.gspj.gdf.bean.Dish;
 import com.revature.gspj.gdf.bean.DishType;
+import com.revature.gspj.gdf.bean.OrderLine;
 
 @Repository
 @Transactional
@@ -101,12 +102,22 @@ public class DishDAOImpl implements DishDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Dish> getDishesByType(DishType type) {
+		
+		/*
+		 * REPLACE THIS HQL WITH CRITERIA... EVENTUALLY
+		 */
 		String hql = "select d.id, d.name, d.price from Dish d inner join d.types dt where dt.id = :dishTypeId";
 		return sessionFactory.getCurrentSession()
 				.createQuery(hql)
 				.setInteger("dishTypeId", type.getId())
 				.list();
 
+	}
+
+	@Override
+	public List<OrderLine> getOrderLinesForDish(Dish dish) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

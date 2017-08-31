@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.revature.gspj.gdf.bean.Dish;
 import com.revature.gspj.gdf.bean.DishType;
+import com.revature.gspj.gdf.bean.OrderLine;
 
 public interface DishDAO {
 	List<Dish> getAllDishes();
@@ -16,4 +17,5 @@ public interface DishDAO {
 	void deleteDish(Dish dish);
 	void addDishTypeToDish(DishType type, Dish dish);
 	void removeDishTypeFromDish(DishType type, Dish dish);
+	List<OrderLine> getOrderLinesForDish(Dish dish);
 }
