@@ -1,4 +1,3 @@
-
 angular.module('gdf').controller('loginContainer',
 		function($scope, $http, $state) {
 			$scope.login = function() {
@@ -8,9 +7,24 @@ angular.module('gdf').controller('loginContainer',
 					url : 'loginAuthentication',
 					data : $scope.credentials
 				}).then(function(value) {
-					console.log(value.data)
+					loginSuccess(value.data);
 				}, function(reason) {
-					console.log(reason + " 1");
+					loginFail();
 				})
+			}
+
+			loginSuccess = function(user) {
+				type = user.type.type;
+				if (type === 'Customer') {
+					$state.go('customerHome');
+				}
+				if (type === 'Employee') {
+					$state.go('employeeHome')
+				}
+
+			}
+
+			loginFail = function() {
+				console.log("failed");
 			}
 		});
