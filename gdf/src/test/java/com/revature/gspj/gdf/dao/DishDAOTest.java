@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -53,7 +54,7 @@ public class DishDAOTest extends AbstractTransactionalJUnit4SpringContextTests {
 
 	@Test
 	public void test1(){
-		List<Dish> dishes = testDAO.getAllDishes();
+		Set<Dish> dishes = testDAO.getAllDishes();
 		assertTrue(dishes.size() > 0);
 	}
 	@Test

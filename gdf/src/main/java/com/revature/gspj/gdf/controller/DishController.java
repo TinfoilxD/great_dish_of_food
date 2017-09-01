@@ -1,6 +1,7 @@
 package com.revature.gspj.gdf.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class DishController {
 	
 	@RequestMapping(value = "/dish/all", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Dish> getAllDishes(){
+	public Set<Dish> getAllDishes(){
 		return service.getAllDishes();
 	}
 	

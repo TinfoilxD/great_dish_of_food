@@ -1,5 +1,5 @@
 angular.module('gdf').controller('customerHomeController',
-		function($scope, $http, $state, $rootScope, $document) {
+		function($scope, $http, $state, $rootScope, $document,$modal) {
 	
 			$scope.hasOrderInSession = false;
 			
@@ -43,6 +43,7 @@ angular.module('gdf').controller('customerHomeController',
 					}else{
 						$scope.hasOrderInSession = false;
 					}
+					$scope.orderLines = value.data.orderLines;
 					console.log(value.data);
 				}, function(reason) {
 					
@@ -68,10 +69,54 @@ angular.module('gdf').controller('customerHomeController',
 					url: 'order/removeSession'
 				}).then(function(value) {
 					$scope.hasOrderInSession = false;
+					$scope.orderLines = null;
 				}, function(reason) {
 					
 				}, function(value) {
 					
 				})
 			}
+			
+			$scope.openAddItem = function(dish) {
+				var modalInstance = $modal.open({
+					templateUrl : 'customer_add_item.html',
+					controller : 'customerAddItemController',
+					size : 'sm',
+					resolve : {
+						dish : function() {
+							return dish;
+						}
+					}
+				});
+				modalInstance.result.then(function(value) {
+					$scope.getOrderInSession();
+				}, function(reason) {
+					$scope.getOrderInSession();
+				}, function(value) {
+					
+				})
+			}
+			
+			
 		});
+angular.module('gdf').controller('customerAddItemController', function($scope, dish, $http, $modalInstance){
+	
+	$scope.modalDish = dish;
+	$scope.newCartItem = {};
+	
+	$scope.addItemToCart = function(){
+		
+		$scope.newCartItem.dish = dish;
+		$http({
+			method: 'POST',
+			url: 'order/addItem',
+			data: $scope.newCartItem
+		}).then(function(value) {
+			$modalInstance.close();
+		}, function(reason) {
+			
+		}, function(value) {
+			
+		})
+	}
+});

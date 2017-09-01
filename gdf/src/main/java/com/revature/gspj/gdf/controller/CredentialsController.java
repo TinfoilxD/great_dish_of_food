@@ -18,10 +18,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.revature.gspj.gdf.bean.Credentials;
 import com.revature.gspj.gdf.bean.DishType;
 import com.revature.gspj.gdf.bean.GDFUser;
 import com.revature.gspj.gdf.service.GDFUserService;
+import com.revature.gspj.gdf.wrapper.Credentials;
 import com.revature.gspj.gdf.service.DishTypeService;
 
 @Controller

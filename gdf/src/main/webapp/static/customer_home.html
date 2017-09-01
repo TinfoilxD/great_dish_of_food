@@ -8,9 +8,9 @@
 
 <div>
 	<table>
-	<tr><th>Name</th><th>Price</th></tr>
+	<tr><th>Name</th><th>Price</th><th ng-if="hasOrderInSession">Add to Cart</th></tr>
 	<tr ng-repeat="dish in allDishes">
-		<td>{{dish.name}}</td><td>{{dish.price}}</td>
+		<td>{{dish.name}}</td><td>{{dish.price}}</td><td ng-if="hasOrderInSession"><button ng-click="openAddItem(dish)">Add</button></td>
 	</tr>
 	</table>
 
@@ -22,5 +22,15 @@
 <button ng-click="createOrderInSession()">Start Order</button>
 <button ng-click="removeOrderFromSession()">Cancel Order</button>
 </div>
+
+<div ng-if="hasOrderInSession">
+<table>
+<tr><th>Dish</th><th>Quantity</th><th>Total</th></tr>
+<tr ng-repeat="line in orderLines">
+	<th>{{line.dish.name}}</th><th>{{line.quantity}}</th><th>{{line.dish.price * line.quantity}}</th>
+</tr>
+</table>
+</div>
+
 
 </div>

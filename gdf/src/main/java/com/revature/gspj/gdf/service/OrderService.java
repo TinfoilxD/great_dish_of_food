@@ -1,8 +1,7 @@
 package com.revature.gspj.gdf.service;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,9 +10,9 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.gspj.gdf.bean.Dish;
 import com.revature.gspj.gdf.bean.Order;
 import com.revature.gspj.gdf.dao.OrderDAO;
+import com.revature.gspj.gdf.wrapper.CartItem;
 import com.revature.gspj.gdf.wrapper.ShoppingCart;
 
 /**
@@ -41,7 +40,7 @@ public class OrderService {
 	 */
 	public void createOrderInSession(HttpServletRequest request, HttpServletResponse response) {
 		Order order = new Order();
-		Map<Dish,Integer> orderLines = new HashMap<Dish,Integer>();
+		List<CartItem> orderLines = new ArrayList<>();
 		ShoppingCart cart = new ShoppingCart();
 		cart.setOrder(order);
 		cart.setOrderLines(orderLines);
@@ -85,6 +84,12 @@ public class OrderService {
 	
 	public void createOrder(Order order) {
 		dao.createOrder(order);
+	}
+
+
+	public void addOrderLineToOrderInSession(CartItem item, HttpServletRequest request) {
+		ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("shoppingCart");
+		cart.getOrderLines().add(item);
 	}
 
 }
