@@ -1,11 +1,13 @@
 package com.revature.gspj.gdf.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +25,13 @@ import com.revature.gspj.gdf.wrapper.ShoppingCart;
 public class OrderService {
 	
 	@Autowired
-	OrderDAO dao;
+	private OrderDAO dao;
+	
+	private Logger logger = Logger.getLogger(OrderStatusService.class);
+	public void setDAO(OrderDAO dao) {
+		this.dao = dao;
+	}
+	
 
 	/**
 	 * Creates a temporary order and puts it in session.
@@ -69,6 +77,14 @@ public class OrderService {
 		/*
 		 * NOT YET IMPLEMENTED
 		 */
+	}
+
+	public List<Order> getAllOrders() {
+		return dao.getAllOrders();
+	}
+	
+	public void createOrder(Order order) {
+		dao.createOrder(order);
 	}
 
 }

@@ -48,13 +48,35 @@ angular.module('gdf').controller('orderAllContoller',
 	$scope.getAllOrders = function() {
 		$http({
 			method : 'GET',
-			url : 'orders/all'
+			url : 'order/all'
 		}).then(function(value) {
 			$scope.ordersAll = value.data;
+			console.log(value.data);
 		}, function(reason) {
 
 		}, function(value) {
 
 		})
+	}
+	
+	//Format Date
+	$scope.longToDate = function(number){
+		if(number===null){
+			return "Not Resolved"
+		}
+		else{
+			var date = new Date(number)
+			var year = date.getFullYear();
+			var month = date.getMonth();
+			var day = date.getDate();
+			var hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+	        var am_pm = date.getHours() >= 12 ? "PM" : "AM";
+	        hours = hours < 10 ? "0" + hours : hours;
+	        var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+	        var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+			var date = month + "/" + day + "/" + year + " "+ hours + ":" + minutes + ":" +seconds+ " " +am_pm;
+			
+		return date;
+		}
 	}
 });

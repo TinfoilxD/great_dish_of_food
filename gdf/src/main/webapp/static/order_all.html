@@ -3,7 +3,7 @@
 <table>
 <tr><th>ID</th><th>Submitted</th><th>Resolved</th><th>Type</th><th>Status</th><th>User</th></tr>
 <tr ng-repeat="order in ordersAll">
-	<td>{{order.id}}</td><td>{{order.submitted}}</td><td>{{order.resolved}}</td><td>{{order.type.type}}</td><td>{{order.status.status}}</td><td>{{order.user.username}}</td>
+	<td>{{order.id}}</td><td>{{longToDate(order.submitted)}}</td><td>{{longToDate(order.resolved)}}</td><td>{{order.type.type}}</td><td>{{order.status.status}}</td><td>{{order.user.username}}</td>
 </tr>
 </table>
 

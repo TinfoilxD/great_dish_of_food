@@ -16,6 +16,8 @@ public class GDFUser implements Serializable{
 	@Id
 	@Column(name="user_id")
 	private int id;
+	@Column(name="username")
+	private String username;
 	@Column(name="user_firstname")
 	private String firstName;
 	@Column(name="user_lastname")
@@ -36,9 +38,19 @@ public class GDFUser implements Serializable{
 		return id;
 	}
 
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	
 
 	public String getFirstName() {
 		return firstName;

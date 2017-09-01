@@ -68,6 +68,6 @@ angular.module('gdf').config(
 				name: 'ordersAll',
 				url: '/ordersAll',
 				templateUrl: 'order_all.html',
-				controller: 'ordersAll'
+				controller: 'orderAllContoller'
 			})
 		});
