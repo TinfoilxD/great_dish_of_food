@@ -39,3 +39,22 @@ angular.module('gdf').controller('orderTypeContoller',
 		})
 	}
 });
+
+angular.module('gdf').controller('orderAllContoller',
+		function($scope, $http, $state, $document) {
+	$document.ready(function() {
+		$scope.getAllOrders();
+	})
+	$scope.getAllOrders = function() {
+		$http({
+			method : 'GET',
+			url : 'orders/all'
+		}).then(function(value) {
+			$scope.ordersAll = value.data;
+		}, function(reason) {
+
+		}, function(value) {
+
+		})
+	}
+});

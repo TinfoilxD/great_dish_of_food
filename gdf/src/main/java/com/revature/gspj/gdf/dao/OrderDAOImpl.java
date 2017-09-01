@@ -81,20 +81,21 @@ public class OrderDAOImpl implements OrderDAO {
 
 	@Override
 	public void addOrderLineToOrder(OrderLine orderLine) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().saveOrUpdate(orderLine);
 		
 	}
 
 	@Override
 	public void removeOrderLineFromOrder(OrderLine orderLine) {
-		// TODO Auto-generated method stub
+		sessionFactory.getCurrentSession().delete(orderLine);
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<OrderLine> getOrderLinesForOrder(Order ordeR) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<OrderLine> getOrderLinesForOrder(Order order) {
+		Criteria cr = sessionFactory.getCurrentSession().createCriteria(OrderLine.class);
+		return cr.add(Restrictions.eq("orderLines.id",order.getId())).list();
 	}
 
 }

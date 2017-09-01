@@ -64,5 +64,10 @@ angular.module('gdf').config(
 				name: 'employeeHome',
 				url: '/employee_home',
 				templateUrl: 'employee_home.html'
+			}).state({
+				name: 'ordersAll',
+				url: '/ordersAll',
+				templateUrl: 'order_all.html',
+				controller: 'ordersAll'
 			})
 		});
