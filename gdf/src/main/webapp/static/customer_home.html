@@ -1,15 +1,26 @@
 <div class="container">
 <h1>Hello Customer</h1>
-
-<select class="dropdown" ng-model="filterType" ng-options="type.type for type in allDishTypes">
-	</select>
-<table>
-<tr><th>Name</th><th>Price</th></tr>
-<tr ng-repeat="dish in allDishes">
-	<td>{{dish.name}}</td><td>{{dish.price}}</td>
-</tr>
-</table>
+<div>
+	<select class="dropdown" ng-model="filterType" ng-options="type.type for type in allDishTypes">
+		</select>
+</div>
 
 
+<div>
+	<table>
+	<tr><th>Name</th><th>Price</th></tr>
+	<tr ng-repeat="dish in allDishes">
+		<td>{{dish.name}}</td><td>{{dish.price}}</td>
+	</tr>
+	</table>
+
+</div>
+
+<div>
+<p ng-if="hasOrderInSession">You have started an order.</p>
+<p ng-if="!hasOrderInSession">You have not started an order yet.</p>
+<button ng-click="createOrderInSession()">Start Order</button>
+<button ng-click="removeOrderFromSession()">Cancel Order</button>
+</div>
 
 </div>
