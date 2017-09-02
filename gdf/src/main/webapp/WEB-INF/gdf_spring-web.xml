@@ -16,6 +16,7 @@
 	<mvc:resources location="/static/**" mapping="/**"/>
 
 
+
 	<!-- ViewResolver does forwards and redirects -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/pages/" />
