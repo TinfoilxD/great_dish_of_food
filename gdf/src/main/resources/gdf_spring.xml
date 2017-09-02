@@ -17,8 +17,7 @@
 	<!-- 1. DataSource -->
 	<bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/> 
-		<property name="url" value="jdbc:oracle:thin:@chinook.cspifuzamm3g.us-east-1.rds.amazonaws.com:1521:ORCL"/>
-		<!-- <property name="url" value="#{systemEnvironment['DB_URL']}"/> -->
+		<property name="url" value="#{systemEnvironment['GDF_DB_URL']}"/>
 		<property name="username" value="gdf"/>
 		<property name="password" value="thegreatdishoffood"/>
 

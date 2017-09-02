@@ -1,6 +1,7 @@
 package com.revature.gspj.gdf.service;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class DishService {
 		dao.createDish(dish);
 	}
 	
-	public List<Dish> getAllDishes(){
+	public Set<Dish> getAllDishes(){
 		return dao.getAllDishes();
 	}
 	

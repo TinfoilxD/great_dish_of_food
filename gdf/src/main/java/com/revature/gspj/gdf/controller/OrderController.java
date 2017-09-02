@@ -13,10 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.revature.gspj.gdf.bean.Credentials;
 import com.revature.gspj.gdf.bean.Order;
 import com.revature.gspj.gdf.service.OrderService;
-import com.revature.gspj.gdf.service.OrderStatusService;
+import com.revature.gspj.gdf.wrapper.CartItem;
 import com.revature.gspj.gdf.wrapper.ShoppingCart;
 
 @Controller
@@ -58,6 +57,11 @@ public class OrderController {
 	@ResponseBody
 	public void removeOrderFromSession(HttpServletRequest request){
 		service.removeOrderFromSession(request);
+	}
+	@RequestMapping(value="/order/addItem", method=RequestMethod.POST)
+	@ResponseBody
+	public void addOrderLineToOrderInSession(@RequestBody CartItem item, HttpServletRequest request){
+		service.addOrderLineToOrderInSession(item, request);
 	}
 	
 

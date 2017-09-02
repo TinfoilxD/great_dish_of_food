@@ -5,9 +5,9 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.revature.gspj.gdf.bean.Credentials;
 import com.revature.gspj.gdf.bean.GDFUser;
 import com.revature.gspj.gdf.dao.GDFUserDAO;
+import com.revature.gspj.gdf.wrapper.Credentials;
 
 @Service
 public class GDFUserService {

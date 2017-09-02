@@ -1,13 +1,14 @@
 package com.revature.gspj.gdf.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import com.revature.gspj.gdf.bean.Dish;
 import com.revature.gspj.gdf.bean.DishType;
 import com.revature.gspj.gdf.bean.OrderLine;
 
 public interface DishDAO {
-	List<Dish> getAllDishes();
+	Set<Dish> getAllDishes();
 	List<DishType> getDishTypesForDish(Dish dish);
 	List<Dish> getDishesByType(DishType type);
 	Dish getDishById(int id);

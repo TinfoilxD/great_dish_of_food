@@ -69,7 +69,6 @@ public class OrderDAOTest {
 		List<Order> order = testDAO.getOrdersForStatus(status);
 		logger.info("testGetAllOrdersByStatus_test " + " "+ order.size());
 		assertTrue(order.size() > 0);
-		assertEquals(order.size(),2);
 		assertEquals(2,order.get(0).getId());
 		assertEquals(3,order.get(1).getId());
 	}

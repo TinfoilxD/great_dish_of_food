@@ -1,13 +1,12 @@
 package com.revature.gspj.gdf.wrapper;
 
-import java.util.Map;
+import java.util.List;
 
-import com.revature.gspj.gdf.bean.Dish;
 import com.revature.gspj.gdf.bean.Order;
 
 public class ShoppingCart {
 	private Order order;
-	private Map<Dish, Integer> orderLines;
+	private List<CartItem> orderLines;
 	public ShoppingCart() {
 		super();
 	}
@@ -17,10 +16,10 @@ public class ShoppingCart {
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-	public Map<Dish, Integer> getOrderLines() {
+	public List<CartItem> getOrderLines() {
 		return orderLines;
 	}
-	public void setOrderLines(Map<Dish, Integer> orderLines) {
+	public void setOrderLines(List<CartItem> orderLines) {
 		this.orderLines = orderLines;
 	}
 	

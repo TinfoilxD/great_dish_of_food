@@ -1,4 +1,4 @@
-package com.revature.gspj.gdf.bean;
+package com.revature.gspj.gdf.wrapper;
 
 public class Credentials {
 	

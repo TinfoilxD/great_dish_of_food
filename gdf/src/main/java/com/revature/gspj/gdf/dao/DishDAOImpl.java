@@ -1,12 +1,13 @@
 package com.revature.gspj.gdf.dao;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-import org.hibernate.transform.AliasToBeanResultTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,8 +29,11 @@ public class DishDAOImpl implements DishDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Dish> getAllDishes() {
-		return sessionFactory.getCurrentSession().createCriteria(Dish.class).list();
+	public Set<Dish> getAllDishes() {
+		List dishList = sessionFactory.getCurrentSession()
+				.createCriteria(Dish.class)
+				.list();
+		return new HashSet<Dish>(dishList);
 	}
 
 
