@@ -1,6 +1,7 @@
 package com.revature.gspj.gdf.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +11,11 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.revature.gspj.gdf.bean.GDFUser;
 import com.revature.gspj.gdf.bean.Order;
 import com.revature.gspj.gdf.dao.OrderDAO;
+import com.revature.gspj.gdf.dao.OrderStatusDAO;
+import com.revature.gspj.gdf.dao.OrderTypeDAO;
 import com.revature.gspj.gdf.wrapper.CartItem;
 import com.revature.gspj.gdf.wrapper.ShoppingCart;
 
@@ -25,6 +29,10 @@ public class OrderService {
 	
 	@Autowired
 	private OrderDAO dao;
+	@Autowired
+	private OrderStatusDAO statusDAO;
+	@Autowired
+	private OrderTypeDAO typeDAO;
 	
 	private Logger logger = Logger.getLogger(OrderStatusService.class);
 	public void setDAO(OrderDAO dao) {
@@ -72,10 +80,19 @@ public class OrderService {
 	/**
 	 * Commits order to database. This means the customer checked out.
 	 */
-	public void commitOrderInSession(){
-		/*
-		 * NOT YET IMPLEMENTED
-		 */
+	public void commitOrderInSession(HttpServletRequest request){
+		ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("shoppingCart");
+		
+		
+		//persisting the Order object changes the id of the referenced order.
+		//The empty order id will have a value
+		
+		Order order = cart.getOrder();
+		order.setStatus(statusDAO.getStatusFromName("Received"));
+		order.setType(typeDAO.getTypeFromName("Delivery"));
+		order.setSubmitted(Calendar.getInstance());
+		order.setUser((GDFUser) request.getSession().getAttribute("user"));
+		List<CartItem> orderLines = cart.getOrderLines();
 	}
 
 	public List<Order> getAllOrders() {
@@ -86,7 +103,14 @@ public class OrderService {
 		dao.createOrder(order);
 	}
 
-
+	/**
+	 * Adds a temporary cartitem into the shoppingcart held in the session.
+	 * Nothing is persisted at this point.
+	 * The CartItem information will be used to persist the order when it is committed.
+	 * 
+	 * @param item
+	 * @param request
+	 */
 	public void addOrderLineToOrderInSession(CartItem item, HttpServletRequest request) {
 		ShoppingCart cart = (ShoppingCart) request.getSession().getAttribute("shoppingCart");
 		cart.getOrderLines().add(item);
