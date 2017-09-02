@@ -9,7 +9,8 @@ angular.module('gdf').config(
 			$stateProvider.state({
 				name : 'home',
 				url : '/',
-				templateUrl : 'landing.html'
+				templateUrl : 'login.html',
+				controller : 'loginContainer'
 			}).state({
 				name : 'dishTypeCreate',
 				url : '/dishTypeCreate',
@@ -22,11 +23,13 @@ angular.module('gdf').config(
 				controller : 'dishTypeAllController'
 			}).state({
 				name : "dishAll",
+				parent: 'employeeHome',
 				url : "/dishAll",
 				templateUrl : "dish_all.html",
 				controller : "dishAllController"
 			}).state({
 				name : 'dishCreate',
+				parent: 'employeeHome',
 				url : '/dishCreate',
 				templateUrl : 'dish_create.html',
 				controller : 'dishCreateController'
@@ -66,8 +69,13 @@ angular.module('gdf').config(
 				templateUrl: 'employee_home.html'
 			}).state({
 				name: 'ordersAll',
+				parent: 'employeeHome',
 				url: '/ordersAll',
-				templateUrl: 'order_all.html',
-				controller: 'orderAllContoller'
+			    controller: 'orderAllContoller',
+			    templateUrl: 'order_all.html'
+			    
+				
+				
 			})
+		
 		});

@@ -1,5 +1,7 @@
 package com.revature.gspj.gdf.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +22,11 @@ public class GDFUserService {
 	}
 
 	public GDFUser authenticate(Credentials credentials) {
+		
 		GDFUser user = dao.getUser(credentials.getUsername(), credentials.getPassword());
+		
+		
+		
 		user.setPassword(null);
 		return user; 
 				

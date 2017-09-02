@@ -2,7 +2,9 @@ package com.revature.gspj.gdf.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,9 +41,11 @@ public class CredentialsController {
 	@RequestMapping(value = "/loginAuthentication", method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public GDFUser userLogin(@RequestBody Credentials credentials,HttpServletResponse response){
+	public GDFUser userLogin(@RequestBody Credentials credentials,HttpServletResponse response,HttpServletRequest request){
 		try{
 			GDFUser user = service.authenticate(credentials);
+			HttpSession session = request.getSession();
+			session.setAttribute("user",user);
 			return user;
 		}catch(IllegalArgumentException e){
 			logger.debug("message", e);

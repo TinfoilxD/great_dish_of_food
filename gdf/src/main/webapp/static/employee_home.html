@@ -1,4 +1,39 @@
+
+
 <div class="container">
-	<h1>Hello Employee</h1>
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Hello Employee</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Orders
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a ui-sref="ordersAll">See all Orders</a></li>
+          <li><a href="#">Received</a></li>
+          <li><a href="#">Cooking</a></li>
+          <li><a href="#">Out for Delivery</a></li>
+          <li><a href="#">Complete</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Manage Dishes
+        <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+        	<li><a ui-sref="dishAll">View Dishes</a></li>
+          <li><a ui-sref="dishCreate">Create Dish</a></li>
+         </ul>
+      </li>
+      <li><a href="#">Manage Dish Types</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div ui-view=""></div>
+	
+
 </div>
 
