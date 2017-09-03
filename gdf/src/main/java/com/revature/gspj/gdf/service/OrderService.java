@@ -95,7 +95,16 @@ public class OrderService {
 		order.setType(typeDAO.getTypeFromName("Delivery"));
 		order.setSubmitted(Calendar.getInstance());
 		order.setUser((GDFUser) request.getSession().getAttribute("user"));
+		dao.createOrder(order);
 		Set<CartItem> orderLines = cart.getOrderLines();
+		for(CartItem item: orderLines){
+			OrderLine newOrderLine = new OrderLine();
+			newOrderLine.setDish(item.getDish());
+			newOrderLine.setOrder(order);
+			newOrderLine.setQuantity(item.getQuantity());
+			dao.addOrderLineToOrder(newOrderLine);
+		}
+		request.getSession().removeAttribute("shoppingCart");
 	}
 
 	public List<Order> getAllOrders() {

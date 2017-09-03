@@ -72,6 +72,11 @@ public class OrderController {
 	public void addOrderLineToOrderInSession(@RequestBody CartItem item, HttpServletRequest request){
 		service.addOrderLineToOrderInSession(item, request);
 	}
+	@RequestMapping(value="/order/commitSession", method=RequestMethod.POST)
+	@ResponseBody
+	public void commitOrderInSession(HttpServletRequest request){
+		service.commitOrderInSession(request);
+	}
 	@RequestMapping(value="/order/allOrdersWithItems", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public Set<ShoppingCart> allOrdersForCustomerWithItems(HttpServletRequest request){

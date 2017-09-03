@@ -243,6 +243,21 @@ INSERT INTO dish ( dish_name,dish_price ) VALUES (
     'Kung Pao Chicken',
     10.95
 );
+INSERT INTO dish ( dish_name,dish_price ) VALUES (
+    
+    'Chicken Lo Mein',
+    9.95
+);
+INSERT INTO dish ( dish_name,dish_price ) VALUES (
+    
+    'Shrimpt Tempura(5)',
+    9.95
+);
+INSERT INTO dish ( dish_name,dish_price ) VALUES (
+    
+    'Spring Rolls(8)',
+    11.95
+);
 
 
 --categories

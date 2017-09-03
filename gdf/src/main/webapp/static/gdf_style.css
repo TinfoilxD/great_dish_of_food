@@ -2,3 +2,16 @@
 #add_item_quantity {
 	width: 40px;
 }
+#menu_table_div{
+	width: 40%;
+	display: inline-block
+}
+#menu_table{
+	width: auto;
+	display: inline-block
+}
+#cart_div{
+	position: fixed;
+	top: 50%;
+	right: 5%;
+}
