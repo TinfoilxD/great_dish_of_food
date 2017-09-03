@@ -59,10 +59,21 @@ angular.module('gdf').config(
 				templateUrl : 'orderTypeAll.html',
 				controller : 'orderTypeContoller'
 			}).state({
+				name: 'customer',
+				url: '/customer',
+				templateUrl: 'customer.html'
+			}).state({
 				name: 'customerHome',
-				url: '/customer_home',
+				parent: 'customer',
+				url: '/customerHome',
 				templateUrl: 'customer_home.html',
 				controller: 'customerHomeController'
+			}).state({
+				name: 'customerOrders',
+				parent: 'customer',
+				url: '/customerOrders',
+				templateUrl: 'customer_orders.html',
+				controller: 'customerOrdersController'
 			}).state({
 				name: 'employeeHome',
 				url: '/employee_home',

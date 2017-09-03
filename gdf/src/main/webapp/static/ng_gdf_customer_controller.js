@@ -138,3 +138,22 @@ angular.module('gdf').controller('customerAddItemController', function($scope, d
 		})
 	}
 });
+
+angular.module('gdf').controller('customerOrdersController',function($scope, $http, $document){
+	$document.ready(function(){
+		$scope.getAllOrders();
+	});
+	$scope.getAllOrders = function() {
+		$http({
+			method : 'GET',
+			url : 'order/all'
+		}).then(function(value) {
+			$scope.allOrders = value.data;
+			console.log(value.data);
+		}, function(reason) {
+
+		}, function(value) {
+
+		})
+	}
+})

@@ -52,7 +52,6 @@ public class Order implements Serializable {
 	@JoinColumn(name = "user_id")
 	private GDFUser user;
 	
-	@JsonIgnore
 	@OneToMany(mappedBy="order")
 	private Set<OrderLine> orderLines;
 	
