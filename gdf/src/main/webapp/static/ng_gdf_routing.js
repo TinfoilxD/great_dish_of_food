@@ -87,7 +87,7 @@ angular.module('gdf').config(
 			    	
 			    }).state({
 					name: 'updateOrder',
-					parent: 'employeeHome',
+					//parent: 'employeeHome',
 					url: '/updateOrder',
 				    controller: 'updateOrderController',
 				    templateUrl: 'order_update.html'

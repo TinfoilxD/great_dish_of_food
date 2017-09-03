@@ -1,4 +1,7 @@
-<div class="container">
+
+<div class="container-fluid">
+
+
 
 <table class="table">
 
@@ -11,18 +14,22 @@
       <th>Status</th>
       <th>User</th>
     </tr>
-    <tr style="cursor: pointer;"  
-ng-click="clickOrder(order)" scope="row">
-	<td>{{order.id}}</td>
-	<td>{{longToDate(order.submitted)}}</td>
-	<td>{{longToDate(order.resolved)}}</td>
-	<td>{{order.type.type}}</td>
-	<td>{{order.status.status}}</td>
-	<td>{{order.user.username}}</td>
+    <tr scope="row">
+	<td>{{orderUpdate.id}}</td>
+	<td>{{longToDate(orderUpdate.submitted)}}</td>
+	<td>{{longToDate(orderUpdate.resolved)}}</td>
+	<td>{{orderUpdate.type.type}}</td>
+	<td style="cursor: pointer;">
+	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{orderUpdate.status.status}}
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu" ng-repeat="status in allOrderStatus">
+      <li>{{status.status}}</li>
+    </ul>
+	</td>
+	<td>{{orderUpdate.user.username}}</td>
 </tr>
 </tbody>
 </table>
-
 
 
 </div>

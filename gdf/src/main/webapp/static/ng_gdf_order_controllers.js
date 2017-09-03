@@ -3,7 +3,7 @@
  */
 
 angular.module('gdf').controller('orderStatusController',
-		function($scope, $http, $state, $document) {
+		function($scope, $http, $state, $document,$rootScope) {
 	$document.ready(function() {
 		$scope.getAllOrderStatus();
 	})
@@ -12,7 +12,7 @@ angular.module('gdf').controller('orderStatusController',
 			method : 'GET',
 			url : 'orderStatus/all'
 		}).then(function(value) {
-			$scope.allOrderStatus = value.data;
+			$rootScope.allOrderStatus = value.data;
 		}, function(reason) {
 
 		}, function(value) {
@@ -22,7 +22,7 @@ angular.module('gdf').controller('orderStatusController',
 });
 
 angular.module('gdf').controller('orderTypeContoller',
-		function($scope, $http, $state, $document) {
+		function($scope, $http, $state, $document,$rootScope) {
 	$document.ready(function() {
 		$scope.getAllOrderTypes();
 	})
@@ -42,7 +42,26 @@ angular.module('gdf').controller('orderTypeContoller',
 
 
 angular.module('gdf').controller('updateOrderController',
-		function($scope, $http, $state, $document,$location) {
+		function($scope, $http,order,$state, $document,$location,$rootScope) {
+
+	$scope.orderUpdate = order;
+	
+	$document.ready(function() {
+		$scope.getAllOrderStatus();
+	})
+	$scope.getAllOrderStatus = function() {
+		$http({
+			method : 'GET',
+			url : 'orderStatus/all'
+		}).then(function(value) {
+			$scope.allOrderStatus = value.data;
+			console.log($scope.allOrderStatus);
+		}, function(reason) {
+
+		})
+	}
+	
+
 	$scope.updateOrder = function() {
 		$http({
 			method : 'POST',
@@ -62,7 +81,7 @@ angular.module('gdf').controller('updateOrderController',
 });
 
 angular.module('gdf').controller('orderAllContoller',
-		function($scope, $http, $state, $document,$location) {
+		function($scope, $http, $state, $document,$location,$modal,$rootScope) {
 	$document.ready(function() {
 		$scope.getAllOrders();
 	})
@@ -71,31 +90,42 @@ angular.module('gdf').controller('orderAllContoller',
 			method : 'GET',
 			url : 'order/all'
 		}).then(function(value) {
-			$scope.ordersAll = value.data;
-			console.log(value.data);
-		}, function(reason) {
-
-		}, function(value) {
-
-		})
-	}
-	$scope.clickOrder = function(order){
-		$http({
-			method : 'GET',
-			url : 'order/byId'
-		}).then(function(value) {
-			$scope.ordersAll = value.data;
-			console.log(value.data);
-		}, function(reason) {
-
-		}, function(value) {
-
-		})
 		
+			$scope.ordersAll = value.data;
+			console.log("all" + $scope.ordersAll)
+		}, function(reason) {
+
+		}, function(value) {
+
+		})
 	}
 	
+	$scope.clickOrder = function(order){
+			var modelInstance = $modal.open({
+				templateUrl : 'order_update.html',
+				controller : 'updateOrderController',
+				size : 'lg',
+				resolve : {
+					order : function() {
+						return order;
+					}
+				
+				}
+			});
+			modelInstance.result.then(function(value) {
+				console.log("in" + modelInstance.order.id)
+			}, function(reason) {
+				
+			}, function(value) {
+				
+			})
+		}
+		
+		
+	
+	
 	//Format Date
-	$scope.longToDate = function(number){
+	$rootScope.longToDate = function(number){
 		if(number===null){
 			return "Not Resolved"
 		}
