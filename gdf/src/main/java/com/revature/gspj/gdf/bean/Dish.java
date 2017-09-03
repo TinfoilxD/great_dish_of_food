@@ -41,7 +41,6 @@ public class Dish implements Serializable{
 	@JoinTable(name="CATEGORIES",
 		    joinColumns={@JoinColumn(name="dish_id")},
 		    inverseJoinColumns={@JoinColumn(name="dish_type_id")})
-	@JsonIgnore
 	private Set<DishType> types;
 	
 	@JsonIgnore

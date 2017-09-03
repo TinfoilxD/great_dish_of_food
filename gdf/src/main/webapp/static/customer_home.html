@@ -1,7 +1,7 @@
 <div class="container">
 <h1>Hello Customer</h1>
 <div>
-	<select class="dropdown" ng-model="filterType" ng-options="type.type for type in allDishTypes">
+	<select ng-model="filterDishType" class="dropdown" ng-change="filterChange()" ng-options="type.type for type in allDishTypes">
 		</select>
 </div>
 
@@ -9,7 +9,7 @@
 <div>
 	<table>
 	<tr><th>Name</th><th>Price</th><th ng-if="hasOrderInSession">Add to Cart</th></tr>
-	<tr ng-repeat="dish in allDishes">
+	<tr ng-repeat="dish in allDishes | filter: filterDishByType" >
 		<td>{{dish.name}}</td><td>{{dish.price}}</td><td ng-if="hasOrderInSession"><button ng-click="openAddItem(dish)">Add</button></td>
 	</tr>
 	</table>

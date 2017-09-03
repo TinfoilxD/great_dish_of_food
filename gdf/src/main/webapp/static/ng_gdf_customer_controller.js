@@ -2,7 +2,10 @@ angular.module('gdf').controller('customerHomeController',
 		function($scope, $http, $state, $rootScope, $document,$modal) {
 	
 			$scope.hasOrderInSession = false;
-			
+			$scope.filterDishType = {
+					id: 0,
+					type: 'Select All'
+			}
 			
 			$document.ready(function() {
 				$scope.getAllDishes();
@@ -15,6 +18,7 @@ angular.module('gdf').controller('customerHomeController',
 					url : 'dish/all'
 				}).then(function(value) {
 					$scope.allDishes = value.data;
+					console.log($scope.allDishes);
 				}, function(reason) {
 
 				}, function(value) {
@@ -27,6 +31,8 @@ angular.module('gdf').controller('customerHomeController',
 					url : 'dishType/all'
 				}).then(function(value) {
 					$scope.allDishTypes = value.data;
+					$scope.allDishTypes.unshift($scope.filterDishType);
+
 				}, function(reason) {
 
 				}, function(value) {
@@ -97,6 +103,18 @@ angular.module('gdf').controller('customerHomeController',
 				})
 			}
 			
+		$scope.filterDishByType = function(dish){
+			if ($scope.filterDishType.type === 'Select All'){
+				return true;
+			}
+			for(var i = 0; i< dish.types.length; i++){
+				type = dish.types[i];
+				if($scope.filterDishType.type === type.type){
+					return true;
+				}
+			}
+			return false;
+		}
 			
 		});
 angular.module('gdf').controller('customerAddItemController', function($scope, dish, $http, $modalInstance){
