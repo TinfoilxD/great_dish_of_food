@@ -82,6 +82,20 @@ angular.module('gdf').controller('customerHomeController',
 					
 				})
 			}
+			$scope.commitOrderInSession = function(){
+				$http({
+					method: 'POST',
+					url: 'order/commitSession'
+				}).then(function(value) {
+					console.log(value);
+					$scope.hasOrderInSession = false;
+					$scope.orderLines = false;
+				}, function(reason) {
+					
+				}, function(value) {
+					
+				})
+			}
 			
 			$scope.openAddItem = function(dish) {
 				var modalInstance = $modal.open({
@@ -155,5 +169,25 @@ angular.module('gdf').controller('customerOrdersController',function($scope, $ht
 		}, function(value) {
 
 		})
+	}
+	//Format Date
+	$scope.longToDate = function(number){
+		if(number===null){
+			return "Not Resolved"
+		}
+		else{
+			var date = new Date(number)
+			var year = date.getFullYear();
+			var month = date.getMonth();
+			var day = date.getDate();
+			var hours = date.getHours() > 12 ? date.getHours() - 12 : date.getHours();
+	        var am_pm = date.getHours() >= 12 ? "PM" : "AM";
+	        hours = hours < 10 ? "0" + hours : hours;
+	        var minutes = date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes();
+	        var seconds = date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds();
+			var date = month + "/" + day + "/" + year + " "+ hours + ":" + minutes + ":" +seconds+ " " +am_pm;
+			
+		return date;
+		}
 	}
 })

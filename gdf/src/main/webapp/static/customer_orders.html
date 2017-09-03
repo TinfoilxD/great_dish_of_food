@@ -1,16 +1,17 @@
-<table  >
+<div class="container">
+<table class="table table-hover">
 <tr>
-	<th>Status</th>
-	<th>Type</th>
-	<th>Submitted</th>
-	<th>Resolved</th>
+	<td><strong>Status</strong></td>
+	<td><strong>Type</strong></td>
+	<td><strong>Submitted</strong></td>
+	<td><strong>Resolved</strong></td>
 </tr>
 <tbody ng-repeat="order in allOrders">
 <tr>
 	<td>{{order.order.status.status}}</td>
 	<td>{{order.order.type.type}}</td>
-	<td>{{order.order.submitted}}</td>
-	<td>{{order.order.resolved}}</td>
+	<td>{{longToDate(order.order.submitted)}}</td>
+	<td>{{longToDate(order.order.resolved)}}</td>
 </tr>
 <tr ng-if="order.orderLines.length !== 0">
 	<td></td>
@@ -25,5 +26,7 @@
 	<td>{{orderLine.dish.price * orderLine.quantity}}</td>
 
 </tr>
+
 </tbody>
 </table>
+</div>
