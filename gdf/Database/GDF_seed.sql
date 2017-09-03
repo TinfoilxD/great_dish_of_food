@@ -169,6 +169,25 @@ INSERT INTO gdf_user (
     1
 );
 
+INSERT INTO gdf_user (
+    user_id,
+    username,
+    user_firstname,
+    user_lastname,
+    user_email,
+    user_password,
+    user_type_id
+) VALUES (
+    4,
+    'lemon',
+    'Lemon',
+    'Ade',
+    'lemonade@lemon.com',
+    '$2a$10$VgkHIhT8Vt661ExClSWsDOtYlIN5WKvLclZzagz8X23atR2Y9VHCi',
+    2
+);
+
+
 --user_type
 INSERT INTO user_type ( user_type_id,user_type ) VALUES (1,'Employee' );
 INSERT INTO user_type ( user_type_id,user_type ) VALUES (2,'Customer' );
@@ -213,7 +232,19 @@ INSERT INTO orders (
     2,
     2
 );
-
+INSERT INTO orders (
+    order_submitted,
+    order_resolved,
+    order_type,
+    order_status,
+    user_id
+) VALUES (
+    '06-MAY-2017 11:30:00.00',
+    null,
+    1,
+    1,
+    4
+);
 --DISH_LINE
 INSERT INTO order_line (
     order_id,

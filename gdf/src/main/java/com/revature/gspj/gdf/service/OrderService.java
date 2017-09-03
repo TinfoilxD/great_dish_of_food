@@ -135,7 +135,8 @@ public class OrderService {
 	public Set<ShoppingCart> getAllOrdersForCustomerWithItems(HttpServletRequest request) {
 		
 		//list of orders in database that ignores orderlines in json parsing
-		List<Order> orders = dao.getAllOrders();
+		GDFUser user = (GDFUser) request.getSession().getAttribute("user");
+		List<Order> orders = dao.getOrdersForUser(user);
 		
 		//list of empty shoppingcart sets that will be returned
 		Set<ShoppingCart> orderWithItems = new HashSet<>();
