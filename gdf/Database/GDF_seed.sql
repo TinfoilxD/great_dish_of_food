@@ -82,6 +82,28 @@ TRUNCATE TABLE dish_type;
 TRUNCATE TABLE gdf_user;
 TRUNCATE TABLE user_type;
 TRUNCATE TABLE categories;
+
+/*
+ADD CONSTRAINTS
+*/
+
+
+ALTER TABLE ORDERS ADD CONSTRAINT FK_OrdersOrderTypeId
+    FOREIGN KEY (order_type) REFERENCES ORDER_TYPE (order_type_id);
+ALTER TABLE ORDERS ADD CONSTRAINT FK_OrdersOrderStatusId
+    FOREIGN KEY (order_status) REFERENCES ORDER_STATUS (order_status_id); 
+ALTER TABLE ORDER_LINE ADD CONSTRAINT FK_OrderLineOrderId
+    FOREIGN KEY (order_id) REFERENCES ORDERS (order_id);
+ALTER TABLE ORDER_LINE ADD CONSTRAINT FK_OrderLineDishId
+    FOREIGN KEY (dish_id) REFERENCES DISH (dish_id);  
+ALTER TABLE CATEGORIES ADD CONSTRAINT FK_CategoriesDishId
+    FOREIGN KEY (dish_id) REFERENCES DISH (dish_id);
+ALTER TABLE CATEGORIES ADD CONSTRAINT FK_CategoriesDishTypeId
+    FOREIGN KEY (dish_type_id) REFERENCES DISH_TYPE (dish_type_id);
+ALTER TABLE GDF_USER ADD CONSTRAINT FK_GDFUserUserTypeId
+    FOREIGN KEY (user_type_id) REFERENCES USER_TYPE (user_type_id);
+    
+
 /*
 POPULATE TABLES
 */
@@ -101,20 +123,16 @@ INSERT INTO dish_type ( dish_type ) VALUES ('Soup');
 INSERT INTO order_type ( order_type_id,order_type ) VALUES (1,'Delivery');
 INSERT INTO order_type ( order_type_id,order_type ) VALUES (2,'Carry Out');
 
+
+--user_type
+INSERT INTO user_type ( user_type_id,user_type ) VALUES (1,'Employee' );
+INSERT INTO user_type ( user_type_id,user_type ) VALUES (2,'Customer' );
+
 --Order_Status
 INSERT INTO order_status ( order_status_id,order_status ) VALUES (1,'Received');
 INSERT INTO order_status ( order_status_id,order_status ) VALUES (2,'Cooking');
 INSERT INTO order_status ( order_status_id,order_status ) VALUES (3,'Out for Delivery');
 INSERT INTO order_status ( order_status_id,order_status ) VALUES (4,'Delivered');
-
---categories
-INSERT INTO categories ( dish_id,dish_type_id ) VALUES (1,6);
-INSERT INTO categories ( dish_id,dish_type_id ) VALUES (1,1);
-INSERT INTO categories ( dish_id,dish_type_id ) VALUES (2,6);
-INSERT INTO categories ( dish_id,dish_type_id ) VALUES (3,6);
-INSERT INTO categories ( dish_id,dish_type_id ) VALUES (3,2);
-INSERT INTO categories ( dish_id,dish_type_id ) VALUES (4,6);
-INSERT INTO categories ( dish_id,dish_type_id ) VALUES (4,4);
 
 --user
 INSERT INTO gdf_user (
@@ -188,9 +206,53 @@ INSERT INTO gdf_user (
 );
 
 
---user_type
-INSERT INTO user_type ( user_type_id,user_type ) VALUES (1,'Employee' );
-INSERT INTO user_type ( user_type_id,user_type ) VALUES (2,'Customer' );
+
+--DISH
+INSERT INTO dish ( dish_name,dish_price ) VALUES (
+    
+    'Orange Chicken',
+    10.95
+);
+INSERT INTO dish ( dish_name,dish_price ) VALUES (
+    
+    'General Tso''s Chicken',
+    10.45
+);
+INSERT INTO dish ( dish_name,dish_price ) VALUES (
+    
+    'Pork Fried Rice',
+    9.35
+);
+INSERT INTO dish ( dish_name,dish_price ) VALUES (
+    
+    'Shrimp Fried Rice',
+    9.35
+);
+INSERT INTO dish ( dish_name,dish_price ) VALUES (
+    
+    'Brocolli Beef',
+    10.95
+);
+INSERT INTO dish ( dish_name,dish_price ) VALUES (
+    
+    'Sesame Chicken',
+    10.95
+);
+INSERT INTO dish ( dish_name,dish_price ) VALUES (
+    
+    'Kung Pao Chicken',
+    10.95
+);
+
+
+--categories
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (1,6);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (1,1);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (2,6);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (3,6);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (3,2);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (4,6);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (4,4);
 
 --order
 INSERT INTO orders (
@@ -245,6 +307,84 @@ INSERT INTO orders (
     1,
     4
 );
+INSERT INTO orders (
+    order_submitted,
+    order_resolved,
+    order_type,
+    order_status,
+    user_id
+) VALUES (
+    '08-MAY-2017 12:30:00.00',
+    null,
+    1,
+    1,
+    4
+);
+INSERT INTO orders (
+    order_submitted,
+    order_resolved,
+    order_type,
+    order_status,
+    user_id
+) VALUES (
+    '01-MAY-2017 12:30:00.00',
+    null,
+    1,
+    4,
+    4
+);
+INSERT INTO orders (
+    order_submitted,
+    order_resolved,
+    order_type,
+    order_status,
+    user_id
+) VALUES (
+    '14-MAY-2017 12:30:00.00',
+    null,
+    1,
+    1,
+    4
+);
+INSERT INTO orders (
+    order_submitted,
+    order_resolved,
+    order_type,
+    order_status,
+    user_id
+) VALUES (
+    '17-MAY-2017 12:00:00.00',
+    null,
+    1,
+    1,
+    4
+);
+INSERT INTO orders (
+    order_submitted,
+    order_resolved,
+    order_type,
+    order_status,
+    user_id
+) VALUES (
+    '19-MAY-2017 12:30:00.00',
+    null,
+    1,
+    1,
+    4
+);
+INSERT INTO orders (
+    order_submitted,
+    order_resolved,
+    order_type,
+    order_status,
+    user_id
+) VALUES (
+    '21-MAY-2017 11:30:00.00',
+    null,
+    1,
+    1,
+    4
+);
 --DISH_LINE
 INSERT INTO order_line (
     order_id,
@@ -274,43 +414,104 @@ INSERT INTO order_line (
     2
 );
 
---DISH
-INSERT INTO dish ( dish_name,dish_price ) VALUES (
-    
-    'Orange Chicken',
-    10.95
+INSERT INTO order_line (
+    order_id,
+    dish_id,
+    quantity
+) VALUES (
+    4,
+    1,
+    1
 );
-INSERT INTO dish ( dish_name,dish_price ) VALUES (
-    
-    'General TSo Chicken',
-    10.45
+INSERT INTO order_line (
+    order_id,
+    dish_id,
+    quantity
+) VALUES (
+    4,
+    3,
+    1
 );
-INSERT INTO dish ( dish_name,dish_price ) VALUES (
-    
-    'Pork Fried Rice',
-    9.35
+INSERT INTO order_line (
+    order_id,
+    dish_id,
+    quantity
+) VALUES (
+    4,
+    10,
+    1
 );
-INSERT INTO dish ( dish_name,dish_price ) VALUES (
-    
-    'Shrimp Fried Rice',
-    9.35
+INSERT INTO order_line (
+    order_id,
+    dish_id,
+    quantity
+) VALUES (
+    6,
+    2,
+    1
 );
-
-
-ALTER TABLE ORDERS ADD CONSTRAINT FK_OrdersOrderTypeId
-    FOREIGN KEY (order_type) REFERENCES ORDER_TYPE (order_type_id);
-ALTER TABLE ORDERS ADD CONSTRAINT FK_OrdersOrderStatusId
-    FOREIGN KEY (order_status) REFERENCES ORDER_STATUS (order_status_id); 
-ALTER TABLE ORDER_LINE ADD CONSTRAINT FK_OrderLineOrderId
-    FOREIGN KEY (order_id) REFERENCES ORDERS (order_id);
-ALTER TABLE ORDER_LINE ADD CONSTRAINT FK_OrderLineDishId
-    FOREIGN KEY (dish_id) REFERENCES DISH (dish_id);  
-ALTER TABLE CATEGORIES ADD CONSTRAINT FK_CategoriesDishId
-    FOREIGN KEY (dish_id) REFERENCES DISH (dish_id);
-ALTER TABLE CATEGORIES ADD CONSTRAINT FK_CategoriesDishTypeId
-    FOREIGN KEY (dish_type_id) REFERENCES DISH_TYPE (dish_type_id);
-ALTER TABLE GDF_USER ADD CONSTRAINT FK_GDFUserUserTypeId
-    FOREIGN KEY (user_type_id) REFERENCES USER_TYPE (user_type_id);
-    
+INSERT INTO order_line (
+    order_id,
+    dish_id,
+    quantity
+) VALUES (
+    7,
+    3,
+    2
+);
+INSERT INTO order_line (
+    order_id,
+    dish_id,
+    quantity
+) VALUES (
+    7,
+    8,
+    1
+);
+INSERT INTO order_line (
+    order_id,
+    dish_id,
+    quantity
+) VALUES (
+    7,
+    9,
+    1
+);
+INSERT INTO order_line (
+    order_id,
+    dish_id,
+    quantity
+) VALUES (
+    8,
+    3,
+    1
+);
+INSERT INTO order_line (
+    order_id,
+    dish_id,
+    quantity
+) VALUES (
+    9,
+    5,
+    4
+);
+INSERT INTO order_line (
+    order_id,
+    dish_id,
+    quantity
+) VALUES (
+    9,
+    6,
+    1
+);
+INSERT INTO order_line (
+    order_id,
+    dish_id,
+    quantity
+) VALUES (
+    10,
+    7,
+    1
+);
 
 commit;
