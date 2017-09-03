@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.revature.gspj.gdf.bean.OrderStatus;
 import com.revature.gspj.gdf.bean.OrderType;
 @Repository
 @Transactional
@@ -36,4 +37,12 @@ public class OrderTypeDAOImpl implements OrderTypeDAO{
 				.uniqueResult();
 	}
 	
+	@Override
+	@Transactional
+	public OrderType getTypeFromName(String type) {
+		return (OrderType) sessionFactory.getCurrentSession()
+				.createCriteria(OrderType.class)
+				.add(Restrictions.eq("type", type))
+				.uniqueResult();
+	}
 }

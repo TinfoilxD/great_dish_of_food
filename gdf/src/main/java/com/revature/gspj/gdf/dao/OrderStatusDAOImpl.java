@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,6 +40,15 @@ public class OrderStatusDAOImpl implements OrderStatusDAO {
 				.createQuery("FROM OrderStatus where id = :id")
 				.setInteger("id", id).uniqueResult();
 		
+	}
+
+	@Override
+	@Transactional
+	public OrderStatus getStatusFromName(String status) {
+		return (OrderStatus) sessionFactory.getCurrentSession()
+				.createCriteria(OrderStatus.class)
+				.add(Restrictions.eq("status", status))
+				.uniqueResult();
 	}
 
 }
