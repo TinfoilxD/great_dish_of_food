@@ -146,7 +146,7 @@ angular.module('gdf').controller('customerOrdersController',function($scope, $ht
 	$scope.getAllOrders = function() {
 		$http({
 			method : 'GET',
-			url : 'order/all'
+			url : 'order/allOrdersWithItems'
 		}).then(function(value) {
 			$scope.allOrders = value.data;
 			console.log(value.data);

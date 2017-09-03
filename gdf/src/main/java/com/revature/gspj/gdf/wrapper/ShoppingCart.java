@@ -1,12 +1,12 @@
 package com.revature.gspj.gdf.wrapper;
 
-import java.util.List;
+import java.util.Set;
 
 import com.revature.gspj.gdf.bean.Order;
 
 public class ShoppingCart {
 	private Order order;
-	private List<CartItem> orderLines;
+	private Set<CartItem> orderLines;
 	public ShoppingCart() {
 		super();
 	}
@@ -16,10 +16,10 @@ public class ShoppingCart {
 	public void setOrder(Order order) {
 		this.order = order;
 	}
-	public List<CartItem> getOrderLines() {
+	public Set<CartItem> getOrderLines() {
 		return orderLines;
 	}
-	public void setOrderLines(List<CartItem> orderLines) {
+	public void setOrderLines(Set<CartItem> orderLines) {
 		this.orderLines = orderLines;
 	}
 	

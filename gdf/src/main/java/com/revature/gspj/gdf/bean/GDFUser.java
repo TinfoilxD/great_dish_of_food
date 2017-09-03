@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="GDF_USER")
 public class GDFUser implements Serializable{
@@ -25,6 +27,7 @@ public class GDFUser implements Serializable{
 	@Column(name="user_email")
 	private String email;
 	@Column(name="user_password")
+	@JsonIgnore
 	private String password;
 	@ManyToOne
 	@JoinColumn(name="user_type_id")

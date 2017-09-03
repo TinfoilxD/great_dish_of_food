@@ -1,6 +1,29 @@
-<table>
-<tr><th>Status</th><th>Type</th><th>Submitted</th><th>Resolved</th></tr>
-<tr ng-repeat="order in allOrders">
-	<td>{{order.status.status}}</td><td>{{order.type.type}}</td><td>{{order.submitted}}</td><td>{{order.resolved}}</td>
+<table  >
+<tr>
+	<th>Status</th>
+	<th>Type</th>
+	<th>Submitted</th>
+	<th>Resolved</th>
 </tr>
+<tbody ng-repeat="order in allOrders">
+<tr>
+	<td>{{order.order.status.status}}</td>
+	<td>{{order.order.type.type}}</td>
+	<td>{{order.order.submitted}}</td>
+	<td>{{order.order.resolved}}</td>
+</tr>
+<tr ng-if="order.orderLines.length !== 0">
+	<td></td>
+	<td><strong>Dish Name</strong></td>
+	<td><strong>Quantity</strong></td>
+	<td><strong>Total Price</strong></td>
+</tr>
+<tr ng-repeat="orderLine in order.orderLines" >
+	<td></td>
+	<td>{{orderLine.dish.name}}</td>
+	<td>{{orderLine.quantity}}</td>
+	<td>{{orderLine.dish.price * orderLine.quantity}}</td>
+
+</tr>
+</tbody>
 </table>

@@ -1,6 +1,7 @@
 package com.revature.gspj.gdf.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -70,6 +71,11 @@ public class OrderController {
 	@ResponseBody
 	public void addOrderLineToOrderInSession(@RequestBody CartItem item, HttpServletRequest request){
 		service.addOrderLineToOrderInSession(item, request);
+	}
+	@RequestMapping(value="/order/allOrdersWithItems", method=RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Set<ShoppingCart> allOrdersForCustomerWithItems(HttpServletRequest request){
+		return service.getAllOrdersForCustomerWithItems(request);
 	}
 	
 

@@ -2,7 +2,9 @@ package com.revature.gspj.gdf.service;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import com.revature.gspj.gdf.bean.GDFUser;
 import com.revature.gspj.gdf.bean.Order;
+import com.revature.gspj.gdf.bean.OrderLine;
 import com.revature.gspj.gdf.dao.OrderDAO;
 import com.revature.gspj.gdf.dao.OrderStatusDAO;
 import com.revature.gspj.gdf.dao.OrderTypeDAO;
@@ -48,7 +51,7 @@ public class OrderService {
 	 */
 	public void createOrderInSession(HttpServletRequest request, HttpServletResponse response) {
 		Order order = new Order();
-		List<CartItem> orderLines = new ArrayList<>();
+		Set<CartItem> orderLines = new HashSet<>();
 		ShoppingCart cart = new ShoppingCart();
 		cart.setOrder(order);
 		cart.setOrderLines(orderLines);
@@ -92,7 +95,7 @@ public class OrderService {
 		order.setType(typeDAO.getTypeFromName("Delivery"));
 		order.setSubmitted(Calendar.getInstance());
 		order.setUser((GDFUser) request.getSession().getAttribute("user"));
-		List<CartItem> orderLines = cart.getOrderLines();
+		Set<CartItem> orderLines = cart.getOrderLines();
 	}
 
 	public List<Order> getAllOrders() {
@@ -120,6 +123,45 @@ public class OrderService {
 	public List<Order> updateOrders(Order order) {
 		dao.editOrder(order);
 		return dao.getAllOrders();
+	}
+
+
+	/**
+	 * Alternate get order all request mapping to return orders along with its associated
+	 * order lines as cartitems.
+	 * @param request
+	 * @return
+	 */
+	public Set<ShoppingCart> getAllOrdersForCustomerWithItems(HttpServletRequest request) {
+		
+		//list of orders in database that ignores orderlines in json parsing
+		List<Order> orders = dao.getAllOrders();
+		
+		//list of empty shoppingcart sets that will be returned
+		Set<ShoppingCart> orderWithItems = new HashSet<>();
+		
+		/*
+		 * Loops through orders and converst each order to a shoppingcart item
+		 */
+		for(Order order: orders){
+			
+			ShoppingCart cart = new ShoppingCart();
+			cart.setOrder(order);
+			
+			Set<CartItem> cartItems = new HashSet<>();
+			Set<OrderLine> orderLines = order.getOrderLines();
+			
+			for(OrderLine orderline: orderLines){
+				CartItem item = new CartItem();
+				item.setDish(orderline.getDish());
+				item.setQuantity(orderline.getQuantity());
+				cartItems.add(item);
+			}
+			cart.setOrderLines(cartItems);
+			orderWithItems.add(cart);
+		} // end order: orders for loop
+		
+		return orderWithItems;
 	}
 
 }

@@ -65,13 +65,13 @@ angular.module('gdf').config(
 			}).state({
 				name: 'customerHome',
 				parent: 'customer',
-				url: '/customerHome',
+				url: '/home',
 				templateUrl: 'customer_home.html',
 				controller: 'customerHomeController'
 			}).state({
 				name: 'customerOrders',
 				parent: 'customer',
-				url: '/customerOrders',
+				url: '/order',
 				templateUrl: 'customer_orders.html',
 				controller: 'customerOrdersController'
 			}).state({
