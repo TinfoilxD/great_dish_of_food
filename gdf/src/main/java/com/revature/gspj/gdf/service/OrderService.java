@@ -116,4 +116,10 @@ public class OrderService {
 		cart.getOrderLines().add(item);
 	}
 
+
+	public List<Order> updateOrders(Order order) {
+		dao.editOrder(order);
+		return dao.getAllOrders();
+	}
+
 }

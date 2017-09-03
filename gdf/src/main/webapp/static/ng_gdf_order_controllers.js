@@ -40,8 +40,29 @@ angular.module('gdf').controller('orderTypeContoller',
 	}
 });
 
+
+angular.module('gdf').controller('updateOrderController',
+		function($scope, $http, $state, $document,$location) {
+	$scope.updateOrder = function() {
+		$http({
+			method : 'POST',
+			url : 'order/update',
+				data: $scope.order
+		}).then(function(value) {
+			$scope.ordersAll = value.data;
+			$location.path('/ordersAll');
+			
+		}, function(reason) {
+
+		}, function(value) {
+
+		})
+	}
+	
+});
+
 angular.module('gdf').controller('orderAllContoller',
-		function($scope, $http, $state, $document) {
+		function($scope, $http, $state, $document,$location) {
 	$document.ready(function() {
 		$scope.getAllOrders();
 	})
@@ -57,6 +78,20 @@ angular.module('gdf').controller('orderAllContoller',
 		}, function(value) {
 
 		})
+	}
+	$scope.clickOrder = function(order){
+		$http({
+			method : 'GET',
+			url : 'order/byId'
+		}).then(function(value) {
+			$scope.ordersAll = value.data;
+			console.log(value.data);
+		}, function(reason) {
+
+		}, function(value) {
+
+		})
+		
 	}
 	
 	//Format Date

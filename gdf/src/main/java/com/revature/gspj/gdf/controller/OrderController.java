@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,6 +39,13 @@ public class OrderController {
 	@ResponseBody
 	public List<Order> getAllOrders(){
 		return service.getAllOrders();
+	}
+	
+	@RequestMapping(value="/order/update", method=RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public List<Order> updateOrder(@RequestBody Order order){
+		return service.updateOrders(order);
 	}
 	
 	@RequestMapping(value="/order/putSession", method=RequestMethod.POST)
