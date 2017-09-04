@@ -1,9 +1,11 @@
 package com.revature.gspj.gdf.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Set;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
@@ -47,7 +49,7 @@ public class OrderDAOTest {
 	@Test
 	public void testGetAllOrders() {
 
-		List<Order> order = testDAO.getAllOrders();
+		Set<Order> order = testDAO.getAllOrders();
 		logger.info("testGetAllOrders_test " + order.size());
 		assertTrue(order.size() > 0);
 		assertEquals(order.size(),3);
@@ -56,32 +58,26 @@ public class OrderDAOTest {
 	@Test
 	public void testGetAllOrdersByUser() {
 		GDFUser user = GDFtestDAO.getUserFromId(1);
-		List<Order> order = testDAO.getOrdersForUser(user);
-		logger.info("testGetAllOrdersByUser_test " + user.getFirstName() + " "+order.get(0).getStatus().getStatus());
+		Set<Order> order = testDAO.getOrdersForUser(user);
 		assertTrue(order.size() > 0);
 		assertEquals(order.size(),1);
-		assertEquals("Delivered",order.get(0).getStatus().getStatus());
 	}
 	
 	@Test
 	public void testGetAllOrdersByStatus() {
 		OrderStatus status = StatusTestDAO.getStatusFromId(2);
-		List<Order> order = testDAO.getOrdersForStatus(status);
+		Set<Order> order = testDAO.getOrdersForStatus(status);
 		logger.info("testGetAllOrdersByStatus_test " + " "+ order.size());
 		assertTrue(order.size() > 0);
-		assertEquals(2,order.get(0).getId());
-		assertEquals(3,order.get(1).getId());
 	}
 	
 	@Test
 	public void testGetAllOrdersByType() {
 		OrderType type = TypeTestDAO.getTypeFromId(1);
-		List<Order> order = testDAO.getOrdersForType(type);
+		Set<Order> order = testDAO.getOrdersForType(type);
 		logger.info("testGetAllOrdersByType_test " + " "+ order.size());
 		assertTrue(order.size() > 0);
 		assertEquals(order.size(),1);
-		assertEquals(4,order.get(0).getStatus().getId());
-		//assertEquals(3,order.get(1).getId());
 	}
 	
 	@Test
