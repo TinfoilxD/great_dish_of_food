@@ -1,3 +1,19 @@
+angular.module('gdf').controller('customerController',function($scope, $http, $state){
+	console.log('clicky');
+	$scope.logout = function(){
+		$http({
+			url: 'logout',
+			method: 'post'
+		}).then(function(value) {
+			$state.go('home');
+		}, function(reason) {
+			
+		}, function(value) {
+			
+		});
+	}
+});
+
 angular.module('gdf').controller('customerHomeController',
 		function($scope, $http, $state, $rootScope, $document,$modal) {
 	

@@ -62,7 +62,8 @@ angular.module('gdf').config(
 			}).state({
 				name: 'customer',
 				url: '/customer',
-				templateUrl: 'customer.html'
+				templateUrl: 'customer.html',
+				controller: 'customerController'
 			}).state({
 				name: 'customerHome',
 				parent: 'customer',

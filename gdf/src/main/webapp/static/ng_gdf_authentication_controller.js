@@ -16,7 +16,7 @@ angular.module('gdf').controller('loginContainer',
 			loginSuccess = function(user) {
 				type = user.type.type;
 				if (type === 'Customer') {
-					$state.go('customer');
+					$state.go('customerHome');
 				}
 				if (type === 'Employee') {
 					$state.go('employeeHome')

@@ -52,10 +52,11 @@ public class CredentialsController {
 			response.setStatus(401);
 		}
 		return null;
-		
-		
-		
-		
+	}
+	@RequestMapping(value = "/logout", method = RequestMethod.POST)
+	@ResponseBody
+	public void logout(HttpServletRequest request){
+		service.logout(request);
 	}
 
 	

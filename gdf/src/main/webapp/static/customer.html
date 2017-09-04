@@ -1,4 +1,14 @@
+<div class="container">
+<div id="customer_nav">
+<span id="customer_nav_left">
 <h6>Hello Customer</h6>
 <a ui-sref="customerHome">Home</a>
 <a ui-sref="customerOrders">Orders</a>
+</span>
+<span id="customer_nav_right">
+<button ng-click="logout()">Log out</button>
+</span>
+</div>
 <ui-view></ui-view>
+
+</div>
