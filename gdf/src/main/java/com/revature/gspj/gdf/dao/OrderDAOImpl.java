@@ -1,6 +1,8 @@
 package com.revature.gspj.gdf.dao;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
@@ -29,29 +31,33 @@ public class OrderDAOImpl implements OrderDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Order> getAllOrders() {
-		return sessionFactory.getCurrentSession().createCriteria(Order.class).list();
+	public Set<Order> getAllOrders() {
+		List orderList = sessionFactory.getCurrentSession().createCriteria(Order.class).list();
+		return new HashSet<Order>(orderList);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Order> getOrdersForUser(GDFUser user) {
+	public Set<Order> getOrdersForUser(GDFUser user) {
 		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Order.class);
-		return cr.add(Restrictions.eq("user.id",user.getId())).list();
+		List orderList = cr.add(Restrictions.eq("user.id",user.getId())).list();
+		return new HashSet<Order>(orderList); 
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Order> getOrdersForStatus(OrderStatus status) {
+	public Set<Order> getOrdersForStatus(OrderStatus status) {
 		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Order.class);
-		return cr.add(Restrictions.eq("status.id",status.getId())).list();
+		List orderList = cr.add(Restrictions.eq("status.id",status.getId())).list();
+		return new HashSet<Order>(orderList);  
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Order> getOrdersForType(OrderType type) {
+	public Set<Order> getOrdersForType(OrderType type) {
 		Criteria cr = sessionFactory.getCurrentSession().createCriteria(Order.class);
-		return cr.add(Restrictions.eq("type.id",type.getId())).list();
+		List orderList = cr.add(Restrictions.eq("type.id",type.getId())).list();
+		return new HashSet<Order>(orderList);   
 	}
 
 

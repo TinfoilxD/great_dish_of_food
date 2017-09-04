@@ -14,7 +14,7 @@
   </thead>
   <tbody>
 <tr style="cursor: pointer;" ng-class="{'bg-danger': order.status.id===1, 'bg-warning': order.status.id===2 || order.status.id===3, 'bg-success': order.status.id===4}" 
-ng-click="clickOrder(order)" ng-repeat="order in ordersAll" scope="row">
+ng-click="clickOrder(order)" ng-repeat="order in ordersAllStatus" scope="row">
 	<td>{{order.id}}</td>
 	<td>{{longToDate(order.submitted)}}</td>
 	<td>{{longToDate(order.resolved)}}</td>

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import com.revature.gspj.gdf.bean.GDFUser;
 import com.revature.gspj.gdf.bean.Order;
 import com.revature.gspj.gdf.bean.OrderLine;
+import com.revature.gspj.gdf.bean.OrderStatus;
 import com.revature.gspj.gdf.dao.OrderDAO;
 import com.revature.gspj.gdf.dao.OrderStatusDAO;
 import com.revature.gspj.gdf.dao.OrderTypeDAO;
@@ -107,7 +108,7 @@ public class OrderService {
 		request.getSession().removeAttribute("shoppingCart");
 	}
 
-	public List<Order> getAllOrders() {
+	public Set<Order> getAllOrders() {
 		return dao.getAllOrders();
 	}
 	
@@ -129,7 +130,7 @@ public class OrderService {
 	}
 
 
-	public List<Order> updateOrders(Order order) {
+	public Set<Order> updateOrders(Order order) {
 		dao.editOrder(order);
 		return dao.getAllOrders();
 	}
@@ -145,7 +146,7 @@ public class OrderService {
 		
 		//list of orders in database that ignores orderlines in json parsing
 		GDFUser user = (GDFUser) request.getSession().getAttribute("user");
-		List<Order> orders = dao.getOrdersForUser(user);
+		Set<Order> orders = dao.getOrdersForUser(user);
 		
 		//list of empty shoppingcart sets that will be returned
 		Set<ShoppingCart> orderWithItems = new HashSet<>();
@@ -172,6 +173,12 @@ public class OrderService {
 		} // end order: orders for loop
 		
 		return orderWithItems;
+	}
+
+
+	public Set<Order> getOrderByStatus(OrderStatus status) {
+		// TODO Auto-generated method stub
+		return dao.getOrdersForStatus(status);
 	}
 
 }

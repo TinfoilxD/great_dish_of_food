@@ -19,17 +19,18 @@
 	<td>{{longToDate(orderUpdate.submitted)}}</td>
 	<td>{{longToDate(orderUpdate.resolved)}}</td>
 	<td>{{orderUpdate.type.type}}</td>
-	<td style="cursor: pointer;">
-	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">{{orderUpdate.status.status}}
-    <span class="caret"></span></button>
-    <ul class="dropdown-menu" ng-repeat="status in allOrderStatus">
-      <li>{{status.status}}</li>
-    </ul>
+	<td> 
+	{{orderUpdate.status.status}}
 	</td>
+   
+      <!--  <li>{{status.status}}</li>-->
 	<td>{{orderUpdate.user.username}}</td>
 </tr>
 </tbody>
 </table>
+<p>Change Status</p>
+<select ng-model="selectedStatus" ng-options="status.status for status in allOrderStatus"></select>
+<button type="submit" class="btn btn-default" ng-click="updateOrder(selectedStatus)">Submit</button>
 
 
 </div>

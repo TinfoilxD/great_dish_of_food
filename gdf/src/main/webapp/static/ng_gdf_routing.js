@@ -49,10 +49,11 @@ angular.module('gdf').config(
 				templateUrl : 'login.html',
 				controller : 'loginContainer'
 			}).state({
-				name : 'orderStatusAll',
-				url : '/orderStatusAll',
-				templateUrl : 'orderStatus.html',
-				controller : 'orderStatusController'
+				name : 'ordersAllStatus',
+				parent: 'employeeHome',
+				url : '/ordersAllStatus',
+				templateUrl : 'order_all.html'
+
 			}).state({
 				name : 'orderTypeAll',
 				url : '/orderTypeAll',
@@ -77,7 +78,8 @@ angular.module('gdf').config(
 			}).state({
 				name: 'employeeHome',
 				url: '/employee_home',
-				templateUrl: 'employee_home.html'
+				templateUrl: 'employee_home.html',
+					controller: 'orderAllContoller'
 			}).state({
 				name: 'ordersAll',
 				parent: 'employeeHome',

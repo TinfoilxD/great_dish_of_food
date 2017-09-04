@@ -42,35 +42,24 @@ angular.module('gdf').controller('orderTypeContoller',
 
 
 angular.module('gdf').controller('updateOrderController',
-		function($scope, $http,order,$state, $document,$location,$rootScope) {
+		function($scope, $http,order,$state, $document,$location,$rootScope,$modalInstance) {
 
 	$scope.orderUpdate = order;
+	$scope.allOrderStatus = $rootScope.allOrderStatus;
 	
-	$document.ready(function() {
-		$scope.getAllOrderStatus();
-	})
-	$scope.getAllOrderStatus = function() {
-		$http({
-			method : 'GET',
-			url : 'orderStatus/all'
-		}).then(function(value) {
-			$scope.allOrderStatus = value.data;
-			console.log($scope.allOrderStatus);
-		}, function(reason) {
-
-		})
-	}
 	
 
-	$scope.updateOrder = function() {
+	$scope.updateOrder = function(selectedStatus) {
+		$scope.orderUpdate.status = selectedStatus;
+		console.log("selected " + selectedStatus);
 		$http({
 			method : 'POST',
 			url : 'order/update',
-				data: $scope.order
+				data: $scope.orderUpdate
 		}).then(function(value) {
 			$scope.ordersAll = value.data;
-			$location.path('/ordersAll');
-			
+			//$location.path('/ordersAll');
+			$modalInstance.close();
 		}, function(reason) {
 
 		}, function(value) {
@@ -84,7 +73,22 @@ angular.module('gdf').controller('orderAllContoller',
 		function($scope, $http, $state, $document,$location,$modal,$rootScope) {
 	$document.ready(function() {
 		$scope.getAllOrders();
+		$scope.getAllOrderStatus();
 	})
+	console.log("in all controller");
+	$scope.getAllOrderStatus = function() {
+		$http({
+			method : 'GET',
+			url : 'orderStatus/all'
+		}).then(function(value) {
+			$scope.allOrderStatus = value.data;
+			$rootScope.allOrderStatus = value.data;
+			//console.log($scope.allOrderStatus);
+			
+		}, function(reason) {
+
+		})
+	}
 	$scope.getAllOrders = function() {
 		$http({
 			method : 'GET',
@@ -92,13 +96,41 @@ angular.module('gdf').controller('orderAllContoller',
 		}).then(function(value) {
 		
 			$scope.ordersAll = value.data;
-			console.log("all" + $scope.ordersAll)
+			//console.log("all" + $scope.ordersAll)
 		}, function(reason) {
 
 		}, function(value) {
 
 		})
 	}
+	
+	$scope.showStatusOrder = function(selectedOrderStatus){
+		console.log(selectedOrderStatus);
+		if(selectedOrderStatus==="All Orders"){
+			$state.go("ordersAll");
+		}
+		else{
+			console.log("im else");
+			$scope.status = selectedOrderStatus;
+			
+				$http({
+					method : 'POST',
+					url : 'order/allByStatus',
+					data : $scope.status 
+				}).then(function(value) {
+				
+					$scope.ordersAll = value.data;
+					console.log("im scoping" + $scope.ordersAll)
+					$state.go("ordersAllStatus");
+				}, function(reason) {
+
+				}, function(value) {
+
+				})
+			
+		}
+	}
+	
 	
 	$scope.clickOrder = function(order){
 			var modelInstance = $modal.open({
@@ -113,7 +145,7 @@ angular.module('gdf').controller('orderAllContoller',
 				}
 			});
 			modelInstance.result.then(function(value) {
-				console.log("in" + modelInstance.order.id)
+				//console.log("in" + modelInstance.order.id)
 			}, function(reason) {
 				
 			}, function(value) {

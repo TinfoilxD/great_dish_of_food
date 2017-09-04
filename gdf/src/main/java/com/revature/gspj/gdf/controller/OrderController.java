@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.revature.gspj.gdf.bean.Order;
+import com.revature.gspj.gdf.bean.OrderStatus;
 import com.revature.gspj.gdf.service.OrderService;
 import com.revature.gspj.gdf.wrapper.CartItem;
 import com.revature.gspj.gdf.wrapper.ShoppingCart;
@@ -38,14 +39,21 @@ public class OrderController {
 	
 	@RequestMapping(value="order/all", method=RequestMethod.GET)
 	@ResponseBody
-	public List<Order> getAllOrders(){
+	public Set<Order> getAllOrders(){
 		return service.getAllOrders();
+	}
+	
+	@RequestMapping(value="order/allByStatus", method=RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public Set<Order> getAllOrdersByStatus(@RequestBody OrderStatus status){
+		return service.getOrderByStatus(status);
 	}
 	
 	@RequestMapping(value="/order/update", method=RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public List<Order> updateOrder(@RequestBody Order order){
+	public Set<Order> updateOrder(@RequestBody Order order){
 		return service.updateOrders(order);
 	}
 	
