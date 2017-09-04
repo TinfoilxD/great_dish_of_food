@@ -28,3 +28,20 @@ angular.module('gdf').controller('loginContainer',
 				console.log("failed");
 			}
 		});
+
+angular.module('gdf').controller('registerController', function($scope, $state, $http){
+	$scope.register = function(){
+		console.log($scope.newUser);
+		$http({
+			url: 'user/register',
+			method: 'post',
+			data: $scope.newUser
+		}).then(function(value) {
+			$state.go('home');
+		}, function(reason) {
+			
+		}, function(value) {
+			
+		});
+	}
+})

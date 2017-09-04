@@ -27,11 +27,11 @@ import com.revature.gspj.gdf.wrapper.Credentials;
 import com.revature.gspj.gdf.service.DishTypeService;
 
 @Controller
-public class CredentialsController {
+public class AuthenticationController {
 	
 	@Autowired
 	private GDFUserService service;
-	private Logger logger = Logger.getLogger(CredentialsController.class);
+	private Logger logger = Logger.getLogger(AuthenticationController.class);
 	
 	
 	public void setService(GDFUserService service) {
@@ -59,6 +59,12 @@ public class CredentialsController {
 		service.logout(request);
 	}
 
+	@RequestMapping(value = "/user/register", method = RequestMethod.POST)
+	@ResponseBody
+	public void register(@RequestBody GDFUser user){
+		logger.debug(user);
+		service.registerUser(user);
+	}
 	
 }
 

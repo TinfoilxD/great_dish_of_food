@@ -12,6 +12,11 @@ angular.module('gdf').config(
 				templateUrl : 'login.html',
 				controller : 'loginContainer'
 			}).state({
+				name: 'register',
+				url: '/register',
+				templateUrl: 'register.html',
+				controller: 'registerController'
+			}).state({
 				name : 'dishTypeCreate',
 				url : '/dishTypeCreate',
 				templateUrl : 'dish_type_create.html',

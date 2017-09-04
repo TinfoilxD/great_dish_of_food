@@ -5,7 +5,7 @@ DROP SEQUENCES
 DROP SEQUENCE dish_type_id_seq;
 DROP SEQUENCE order_id_seq;
 DROP SEQUENCE dish_id_seq;
-
+DROP SEQUENCE user_id_seq;
 
 
 --CREATE SEQUENCES AND TRIGGERS
@@ -56,6 +56,20 @@ BEGIN
 END;
 /
 
+CREATE SEQUENCE user_id_seq
+    START WITH 120
+    INCREMENT BY 1;
+    
+CREATE OR REPLACE TRIGGER user_id_trigger
+    BEFORE INSERT ON gdf_user
+    FOR EACH ROW
+BEGIN
+    IF :new.user_id IS NULL THEN
+        SELECT user_id_seq.nextval INTO :new.user_id
+        FROM dual;
+    END IF;
+END;
+/
 /*
 
 DROP TABLE FOREIGN KEY CONSTRAINTS

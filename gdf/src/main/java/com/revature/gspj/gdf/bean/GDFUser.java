@@ -4,9 +4,12 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,18 +20,31 @@ public class GDFUser implements Serializable{
 	
 	@Id
 	@Column(name="user_id")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userSeq")
+	@SequenceGenerator(name="userSeq", sequenceName="USER_ID_SEQ",allocationSize=1)
 	private int id;
+	
+	
 	@Column(name="username")
 	private String username;
+	
+	
 	@Column(name="user_firstname")
 	private String firstName;
+	
+	
 	@Column(name="user_lastname")
 	private String lastName;
+	
+	
 	@Column(name="user_email")
 	private String email;
+	
+	
 	@Column(name="user_password")
-	@JsonIgnore
 	private String password;
+	
+	
 	@ManyToOne
 	@JoinColumn(name="user_type_id")
 	private UserType type;
