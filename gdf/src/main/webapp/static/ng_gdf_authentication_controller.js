@@ -1,7 +1,9 @@
 angular.module('gdf').controller('loginContainer',
 		function($scope, $http, $state) {
+	
+		$scope.loginFail = false;
 			$scope.login = function() {
-				console.log("in controller")
+				//console.log("in controller")
 				$http({
 					method : 'POST',
 					url : 'loginAuthentication',
@@ -9,7 +11,7 @@ angular.module('gdf').controller('loginContainer',
 				}).then(function(value) {
 					loginSuccess(value.data);
 				}, function(reason) {
-					loginFail();
+					$scope.loginFail = true;
 				})
 			}
 

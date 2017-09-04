@@ -11,8 +11,6 @@ import com.revature.gspj.gdf.password.PasswordManager;
 
 public class GDFUserDAOImpl implements GDFUserDAO {
 
-	
-	
 	@Autowired
 	private SessionFactory sessionFactory;
 	private Logger logger = Logger.getLogger(GDFUserDAOImpl.class);
@@ -29,15 +27,16 @@ public class GDFUserDAOImpl implements GDFUserDAO {
 			throw new IllegalArgumentException("Invalid Credentials");
 
 		GDFUser user = (GDFUser) sessionFactory.getCurrentSession()
-				.createQuery("FROM GDFUser where username = :username")
-				.setString("username", username)
-				.uniqueResult();
+				.createQuery("FROM GDFUser where username = :username").setString("username", username).uniqueResult();
 		// check for password here
 
-		logger.debug(user.getPassword());
-		logger.debug(PasswordManager.hashPassword(password));
-		if (PasswordManager.checkHashedPassword(password, user.getPassword()) == true) {
-			return user;
+		if (user != null) {
+
+			if (PasswordManager.checkHashedPassword(password, user.getPassword()) == true) {
+				return user;
+			} else {
+				throw new IllegalArgumentException("Invalid Credentials");
+			}
 		} else {
 			throw new IllegalArgumentException("Invalid Credentials");
 		}
@@ -49,8 +48,7 @@ public class GDFUserDAOImpl implements GDFUserDAO {
 	public GDFUser getUserFromId(int id) {
 
 		return (GDFUser) sessionFactory.getCurrentSession().createQuery("FROM GDFUser where id = :id")
-				.setInteger("id", id)
-				.uniqueResult();
+				.setInteger("id", id).uniqueResult();
 	}
 
 	@Override

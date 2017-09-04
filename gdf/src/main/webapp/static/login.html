@@ -6,6 +6,9 @@
 	<label>Password:</label> <input type="password" id="password" ng-model="credentials.password"> <br>
 	<input class="btn btn-primary" type="submit" value="login" ng-click="login()">
 	<br>
+	<div ng-show="loginFail" class="alert alert-warning">
+		<strong>Warning!</strong> Your login credentials didn't work.
+	</div>
 	<a ui-sref="register">New Customer?</a>
 
 
