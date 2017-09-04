@@ -15,3 +15,10 @@
 	top: 50%;
 	right: 5%;
 }
+#customer_nav_left{
+	width: 60%;
+}
+#customer_nav_right{
+	width: 30%;
+	float: right;
+}

@@ -1,5 +1,6 @@
 package com.revature.gspj.gdf.service;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,13 @@ public class GDFUserService {
 		user.setPassword(null);
 		return user; 
 				
+	}
+
+	public void logout(HttpServletRequest request) {
+		request.getSession().removeAttribute("user");
+		request.getSession().invalidate();
+		
+		
 	}
 
 }
