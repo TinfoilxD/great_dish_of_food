@@ -8,14 +8,16 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
+import org.springframework.stereotype.Component;
 
 import com.revature.gspj.gdf.bean.GDFUser;
 import com.revature.gspj.gdf.bean.Order;
 
 @Aspect
+//@Component
 public class EmployeeAspect {
 	
-	@Before(value="execution(* getAllOrders())")
+	@Before(value="execution(* com.revature.gspj.gdf.dao.OrderDAOImpl.*(..))")
 	public void getAllOrders(JoinPoint joinPoint,HttpServletRequest request) throws Exception{
 		//Object returnedValue = null;
 		// before 

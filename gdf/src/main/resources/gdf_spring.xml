@@ -51,8 +51,8 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
-	<bean name="employeeAspect" class="com.revature.gspj.gdf.aspects.EmployeeAspect" />
-	<aop:aspectj-autoproxy />
+	<!--  <bean name="employeeAspect" class="com.revature.gspj.gdf.aspects.EmployeeAspect" />-->
+	<aop:aspectj-autoproxy/>
 	
 	
 </beans>
