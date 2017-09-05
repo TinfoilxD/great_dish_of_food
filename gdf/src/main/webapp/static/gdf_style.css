@@ -1,4 +1,21 @@
 @CHARSET "UTF-8";
+
+
+.container{
+	background-color: transparent;
+}
+#blue{    
+    background: linear-gradient(to right, #ff8566 , #ffff66); /* Standard syntax (must be last) */
+}
+
+#gdf-jumbo-image{
+	background-image: url(https://c1.staticflickr.com/5/4095/4899229294_21e48ae161_b.jpg);
+}
+#header{
+	color
+}
+	
+
 #add_item_quantity {
 	width: 40px;
 }
@@ -22,3 +39,4 @@
 	width: 30%;
 	float: right;
 }
+
