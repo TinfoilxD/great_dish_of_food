@@ -108,7 +108,7 @@ public class OrderService {
 		request.getSession().removeAttribute("shoppingCart");
 	}
 
-	public Set<Order> getAllOrders() {
+	public Set<Order> getAllOrders(HttpServletRequest request) {
 		return dao.getAllOrders();
 	}
 	

@@ -39,8 +39,8 @@ public class OrderController {
 	
 	@RequestMapping(value="order/all", method=RequestMethod.GET)
 	@ResponseBody
-	public Set<Order> getAllOrders(){
-		return service.getAllOrders();
+	public Set<Order> getAllOrders(HttpServletRequest request){
+		return service.getAllOrders(request);
 	}
 	
 	@RequestMapping(value="order/allByStatus", method=RequestMethod.POST,

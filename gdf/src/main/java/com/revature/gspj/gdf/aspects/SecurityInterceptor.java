@@ -22,10 +22,14 @@ public class SecurityInterceptor {
 	private Logger logger = Logger.getLogger(SecurityInterceptor.class);
 
 	
-	@Before(value="execution(* com.revature.gspj.gdf.dao.OrderDAOImpl.*(..))")
+	@Before(value="execution(* com.revature.gspj.gdf.service.OrderService.getAllOrders(..))")
 	public void getAllOrders(JoinPoint joinPoint) throws Exception{
 		Object[] args = joinPoint.getArgs();
-		logger.debug(args.length);
+		HttpServletRequest request = (HttpServletRequest) args[0];
+		GDFUser user = (GDFUser) request.getSession().getAttribute("user");
+		if(!user.getType().getType().equals("Employee")){
+			throw new Exception("Unauthorized method access:" + joinPoint.getSignature());
+		}
 	}
 	
 	
