@@ -104,9 +104,35 @@ angular.module('gdf').controller('orderAllContoller',
 		})
 	}
 	
+	$scope.selectManageSection = function(selectedOrderStatus){
+		$scope.selectedOrderStatus = selectedOrderStatus;
+		if( $scope.selectedOrderStatus === "Manage Orders"){
+			console.log("goin to orderAll");
+			$scope.showStatusOrder("All Orders");
+		}
+		else if($scope.selectedOrderStatus ==="Manage Dishes"){
+			console.log("goin to dishAll");
+			$state.go("dishAll");
+		}
+	}
+	
+	$scope.showStatusDish= function(selectedDishStatus){
+		$scope.selectedDishStatus = selectedDishStatus;
+		console.log("DishManage: " + selectedDishStatus);
+		if($scope.selectedDishStatus === "Create Dish"){
+			$state.go("dishCreate");
+		}
+		else if($scope.selectedDishStatus === "All Dishes"){
+			$state.go("dishAll");
+		}
+	}
+	
+	
+	
 	$scope.showStatusOrder = function(selectedOrderStatus){
 		console.log(selectedOrderStatus);
-		if(selectedOrderStatus==="All Orders"){
+		$scope.selectedOrderStatus = selectedOrderStatus;
+		if($scope.selectedOrderStatus==="All Orders"){
 			$state.go("ordersAll");
 		}
 		else{
@@ -120,7 +146,7 @@ angular.module('gdf').controller('orderAllContoller',
 				}).then(function(value) {
 				
 					$scope.ordersAll = value.data;
-					console.log("im scoping" + $scope.ordersAll)
+					//console.log("im scoping" + $scope.ordersAll)
 					$state.go("ordersAllStatus");
 				}, function(reason) {
 

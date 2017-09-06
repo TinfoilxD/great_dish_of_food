@@ -53,6 +53,20 @@ angular.module('gdf').controller('dishAllController',
 
 				})
 			}
+			$scope.selectManageSection = function(selectedOrderStatus){
+				$scope.selectedOrderStatus = selectedOrderStatus;
+				console.log("Manage: " + selectedOrderStatus);
+				if( $scope.selectedOrderStatus === "Manage Orders"){
+					$state.go("ordersAll");
+				}
+				else if($scope.selectedOrderStatus ==="Manage Dishes"){
+					console.log("going to dish all");
+					$scope.getAllDishes();
+				}
+			}
+			console.log("in dish all cont" );
+			
+			
 		});
 angular.module('gdf').controller('dishCreateController',
 		function($scope, $http, $state) {
@@ -63,8 +77,9 @@ angular.module('gdf').controller('dishCreateController',
 					url : 'dish/create',
 					data : $scope.newDish
 				}).then(function(value) {
+					$state.go("dishAll");
 				}, function(reason) {
-
+						
 				}, function(value) {
 
 				});

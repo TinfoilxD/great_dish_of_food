@@ -3,12 +3,32 @@
 <div class="container">
 
 
-<!--  <select ng-model="selectedOrderStatus" ng-options="status.status for status in allOrderStatus"></select>-->
-<select ng-model="selectedOrderStatus" ng-change="showStatusOrder(selectedOrderStatus)">
+<div class="col-xs-4">
+Manage
+<select ng-model="selectedManageSection" ng-change="selectManageSection(selectedManageSection)" class="form-control">
+    <option>Manage Orders</option>
+    <option>Manage Dishes</option>
+    <option>Manage Dishes Types</option>
+</select> 
+</div> 
+
+<div class="col-xs-4" id="manageOrderSection" ng-show="selectedManageSection=='Manage Orders'">
+Filter
+<select ng-model="selectedOrderStatus" ng-change="showStatusOrder(selectedOrderStatus)" class="form-control">
     <option>All Orders</option>
     <option ng-value="status" ng-repeat="status in allOrderStatus">{{status.status}}
     </option>
-</select>     
+</select> 
+</div>
+
+<div class="col-xs-4" id="manageDishSection" ng-show="selectedManageSection=='Manage Dishes'">
+Filter
+<select ng-model="selectedDishStatus" ng-change="showStatusDish(selectedDishStatus)" class="form-control">
+    <option>All Dishes</option>
+    <option>Create Dish</option>
+</select> 
+</div>
+     
 
 <div ui-view=""></div>
 	
