@@ -1,5 +1,5 @@
 <div class="container">
-<h1>Hello Customer</h1>
+<h2>Menu Items</h2>
 <div>
 	<select ng-model="filterDishType" class="dropdown" ng-change="filterChange()" ng-options="type.type for type in allDishTypes">
 		</select>
@@ -10,32 +10,34 @@
 	<table class="table table-hover" id="menu_table">
 	<tr><th>Name</th><th>Price</th><th ng-if="hasOrderInSession">Add to Cart</th></tr>
 	<tr ng-repeat="dish in allDishes | filter: filterDishByType" >
-		<td>{{dish.name}}</td><td>{{dish.price}}</td><td ng-if="hasOrderInSession"><button ng-click="openAddItem(dish)">Add</button></td>
+		<td>{{dish.name}}</td>
+		<td>{{dish.price | currency}}</td>
+		<td ng-if="hasOrderInSession"><button class="btn btn-success" ng-click="openAddItem(dish)">Add</button></td>
 	</tr>
 	</table>
 
 </div>
 
 <div id="cart_div" class="panel panel-warning">
-<div class="panel-heading">
+<div class="panel-heading" id="cart_panel_header">
 	Your Order
 </div>
 <div class="panel-body">
 <div>
-<p ng-if="hasOrderInSession">You have started an order.</p>
+<p ng-if="hasOrderInSession">You have started an order.<br> Please add to your cart from the menu on the left.</p>
 <p ng-if="!hasOrderInSession">You have not started an order yet.</p>
-<button ng-click="createOrderInSession()">Start Order</button>
-<button ng-click="removeOrderFromSession()">Cancel Order</button>
+<button ng-if="!hasOrderInSession" class="btn btn-success" ng-click="createOrderInSession()">Start Order</button>
+<button ng-if="hasOrderInSession" class="btn btn-warning" ng-click="removeOrderFromSession()">Cancel Order</button>
 </div>
 
 <div ng-if="hasOrderInSession" >
 <table class="table table-hover">
-<tr><th>Dish</th><th>Quantity</th><th>Total</th></tr>
+<tr><th>Dish</th><th>Quantity</th><th>Price</th></tr>
 <tr ng-repeat="line in orderLines">
-	<th>{{line.dish.name}}</th><th>{{line.quantity}}</th><th>{{line.dish.price * line.quantity}}</th>
+	<th>{{line.dish.name}}</th><th>{{line.quantity}}</th><th>{{line.dish.price * line.quantity | currency}}</th>
 </tr>
 </table>
-<button ng-click="commitOrderInSession()">Checkout</button>
+<button class="btn btn-success" ng-click="commitOrderInSession()">Checkout</button>
 </div>
 </div>
 </div>

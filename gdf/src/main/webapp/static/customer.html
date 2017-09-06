@@ -1,14 +1,24 @@
 <div class="container">
-<div id="customer_nav">
-<span id="customer_nav_left">
-<h6>Hello Customer</h6>
-<a ui-sref="customerHome">Home</a>
-<a ui-sref="customerOrders">Orders</a>
-</span>
-<span id="customer_nav_right">
-<button ng-click="logout()">Log out</button>
-</span>
-</div>
-<ui-view></ui-view>
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand">GREAT DISH</a>
+			</div>
+			<div class="collapse navbar-collapse" id="gdf_customer_nav">
+				<ul class="nav navbar-nav">
+					<li><a class="nav-item nav-link" ui-sref="customerHome">Menu</a>
+					</li>
+					<li><a class="nav-item nav-link" ui-sref="customerOrders">Past
+							Orders</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a class="nav-item nav-link" href="" ng-click="logout()">
+							Log Out</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+	<ui-view></ui-view>
 
 </div>

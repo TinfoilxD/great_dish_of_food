@@ -1,5 +1,6 @@
-<div class="container">
+<div class="modal-body form-group">
+
 	<label>{{modalDish.name}}</label><br>
-	<input type="number" ng-model="newCartItem.quantity" id="add_item_quantity" min="0"><br>
-	<button ng-click="addItemToCart()">Add Item</button>
+	<input class="form-control" type="number" ng-model="newCartItem.quantity" id="add_item_quantity" min="1" step="1" pattern="\d*"><br>
+	<button class="btn btn-success" ng-click="addItemToCart()">Add Item</button>
 </div>

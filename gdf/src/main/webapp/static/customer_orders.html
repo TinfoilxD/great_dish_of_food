@@ -1,5 +1,5 @@
 <div class="container">
-<table class="table table-hover">
+<table id="customer_orders_table" class="table table-hover">
 <tr>
 	<td><strong>Status</strong></td>
 	<td><strong>Type</strong></td>
@@ -17,13 +17,13 @@
 	<td></td>
 	<td><strong>Dish Name</strong></td>
 	<td><strong>Quantity</strong></td>
-	<td><strong>Total Price</strong></td>
+	<td><strong>Price</strong></td>
 </tr>
 <tr ng-repeat="orderLine in order.orderLines" >
 	<td></td>
 	<td>{{orderLine.dish.name}}</td>
 	<td>{{orderLine.quantity}}</td>
-	<td>{{orderLine.dish.price * orderLine.quantity}}</td>
+	<td>{{orderLine.dish.price * orderLine.quantity | currency}}</td>
 
 </tr>
 
