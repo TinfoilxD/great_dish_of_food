@@ -18,12 +18,14 @@ angular.module('gdf').config(
 				controller: 'registerController'
 			}).state({
 				name : 'dishTypeCreate',
+				parent: 'employeeHome',
 				url : '/dishTypeCreate',
 				templateUrl : 'dish_type_create.html',
 				controller : 'dishTypeCreateController'
 			}).state({
 				name : 'dishTypeAll',
 				url : '/dishTypeAll',
+				parent: 'employeeHome',
 				templateUrl : 'dish_type_all.html',
 				controller : 'dishTypeAllController'
 			}).state({
@@ -40,11 +42,13 @@ angular.module('gdf').config(
 				controller : 'dishCreateController'
 			}).state({
 				name : 'dishAddType',
+				parent: 'employeeHome',
 				url : '/dishAddType',
 				templateUrl : 'dish_add_type.html',
 				controller : 'dishAddTypeController'
 			}).state({
 				name: 'dishRemoveType',
+				parent: 'employeeHome',
 				url: '/dishRemoveType',
 				templateUrl: 'dish_remove_type.html',
 				controller: 'dishRemoveTypeController'

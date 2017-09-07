@@ -264,7 +264,7 @@ INSERT INTO dish ( dish_name,dish_price ) VALUES (
 );
 INSERT INTO dish ( dish_name,dish_price ) VALUES (
     
-    'Shrimpt Tempura(5)',
+    'Shrimp Tempura(5)',
     9.95
 );
 INSERT INTO dish ( dish_name,dish_price ) VALUES (
@@ -277,11 +277,28 @@ INSERT INTO dish ( dish_name,dish_price ) VALUES (
 --categories
 INSERT INTO categories ( dish_id,dish_type_id ) VALUES (1,6);
 INSERT INTO categories ( dish_id,dish_type_id ) VALUES (1,1);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (2,1);
 INSERT INTO categories ( dish_id,dish_type_id ) VALUES (2,6);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (3,2);
 INSERT INTO categories ( dish_id,dish_type_id ) VALUES (3,6);
 INSERT INTO categories ( dish_id,dish_type_id ) VALUES (3,2);
 INSERT INTO categories ( dish_id,dish_type_id ) VALUES (4,6);
 INSERT INTO categories ( dish_id,dish_type_id ) VALUES (4,4);
+
+
+
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (5,3);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (5,6);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (5,8);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (6,1);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (6,6);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (7,1);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (7,6);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (8,1);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (8,7);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (9,4);
+INSERT INTO categories ( dish_id,dish_type_id ) VALUES (10,8);
+
 
 --order
 INSERT INTO orders (

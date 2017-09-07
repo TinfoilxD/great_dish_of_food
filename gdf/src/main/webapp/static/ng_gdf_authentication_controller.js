@@ -21,7 +21,7 @@ angular.module('gdf').controller('loginContainer',
 					$state.go('customerHome');
 				}
 				if (type === 'Employee') {
-					$state.go('employeeHome')
+					$state.go('ordersAll')
 				}
 
 			}

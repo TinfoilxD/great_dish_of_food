@@ -7,13 +7,27 @@
 			<div class="collapse navbar-collapse" id="gdf_customer_nav">
 			<ul class="nav navbar-nav">
 		<li class="dropdown">
-            <a href="#" class="dropdown-toggle" id="manage_dropdown" >Manage <b class="caret"></b></a>
+            <a href="#" class="dropdown-toggle" id="manage_dropdown" >Orders <b class="caret"></b></a>
             <ul class="dropdown-menu">
- 			  <li><a ui-sref="ordersAll">Orders</a></li>
-              <li><a ui-sref="dishAll">Dishes</a></li>
-              <li><a ui-sref="dishTypeAll">DishTypes</a></li>
+ 			  <li><a ui-sref="ordersAll">All Orders</a></li>
             </ul>
-          </li>    
+          </li>  
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" id="manage_dropdown" >Dishes <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+ 			  <li><a ui-sref="dishAll">All Dishes</a></li>
+              <li><a ui-sref="dishCreate">Create Dish</a></li>
+            </ul>
+          </li> 
+           <li class="dropdown">
+            <a href="#" class="dropdown-toggle" id="manage_dropdown" >Categories <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a ui-sref="dishTypeAll">All Dish Types</a>
+              <li><a ui-sref="dishTypeCreate">New Dish Type</a>
+ 			  <li><a ui-sref="dishAddType">Add Type to Dish</a></li>
+              <li><a ui-sref="dishRemoveType">Remove Type from Dish</a></li>
+            </ul>
+          </li>     
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li><a class="nav-item nav-link" href="" ng-click="logout()">Log Out</a></li>

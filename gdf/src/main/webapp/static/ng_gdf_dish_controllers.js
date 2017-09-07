@@ -11,6 +11,7 @@ angular.module('gdf').controller('dishTypeCreateController',
 					data : $scope.newDishType
 				}).then(function(value) {
 					console.log('Success' + value.data)
+					$state.go('dishTypeAll');
 				}, function(reason) {
 					console.log(reason);
 				}, function(value) {

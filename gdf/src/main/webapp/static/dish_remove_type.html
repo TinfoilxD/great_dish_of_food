@@ -1,16 +1,16 @@
 <div class="container">
 
-<table>
+<table class="table table-hover">
 	<tr><th>Dish</th><th>Types</th></tr>
 	<tr ng-repeat = "dish in allDishes">
-		<td>{{dish.name}}</td><td><button ng-click="getTypesForDish(dish)">Edit</button></td>
+		<td>{{dish.name}}</td><td><button class="btn btn-warning" ng-click="getTypesForDish(dish)">Edit</button></td>
 	</tr>
 </table>
 
-<table>
+<table class="table table-hover">
 	<tr><th>Type</th><th>Remove</th></tr>
 	<tr ng-repeat="type in selectedDishTypes">
-		<td>{{type.type}}</td><td><button ng-click="removeTypeFromDish(type)">X</button></td>
+		<td>{{type.type}}</td><td><button class="btn btn-danger" ng-click="removeTypeFromDish(type)">X</button></td>
 	</tr>
 </table>
 

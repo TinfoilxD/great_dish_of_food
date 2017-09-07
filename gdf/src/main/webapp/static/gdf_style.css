@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+#dish_create_form_div{
+	width: 50%;
+}
+
 #manage_dropdown{
 	font-size: 150%;
 }
