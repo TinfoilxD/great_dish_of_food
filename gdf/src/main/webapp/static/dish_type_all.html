@@ -1,6 +1,6 @@
 <div class="container">
 	<table class="table table-hover">
 		<tr><th>ID</th><th>Type</th><th ng-if="orderSession">Add</th></tr>
-		<tr ng-repeat="dishType in allDishTypes"><td>{{dishType.id}}</td><td>{{dishType.type}}</td><td ng-if="orderSession">Add to Order</td></tr>
+		<tr scope="row" ng-repeat="dishType in allDishTypes"><td>{{dishType.id}}</td><td>{{dishType.type}}</td><td ng-if="orderSession">Add to Order</td></tr>
 	</table>
 </div>
