@@ -114,6 +114,9 @@ angular.module('gdf').controller('orderAllContoller',
 			console.log("goin to dishAll");
 			$state.go("dishAll");
 		}
+		else if($scope.selectedOrderStatus ==="Manage Dishes Types"){
+			$state.go("dishTypeAll");
+		}
 	}
 	
 	$scope.showStatusDish= function(selectedDishStatus){

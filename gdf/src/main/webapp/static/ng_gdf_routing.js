@@ -23,6 +23,7 @@ angular.module('gdf').config(
 				controller : 'dishTypeCreateController'
 			}).state({
 				name : 'dishTypeAll',
+				parent: 'employeeHome',
 				url : '/dishTypeAll',
 				templateUrl : 'dish_type_all.html',
 				controller : 'dishTypeAllController'
