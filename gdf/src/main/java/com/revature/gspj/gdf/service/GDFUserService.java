@@ -11,12 +11,12 @@ import com.revature.gspj.gdf.controller.AuthenticationController;
 import com.revature.gspj.gdf.dao.GDFUserDAO;
 import com.revature.gspj.gdf.dao.UserTypeDAO;
 import com.revature.gspj.gdf.password.PasswordManager;
+import com.revature.gspj.gdf.regex.InputValidatorHelper;
 import com.revature.gspj.gdf.wrapper.Credentials;
 
 @Service
 public class GDFUserService {
-	
-	
+
 	@Autowired
 	private GDFUserDAO dao;
 	@Autowired
@@ -28,28 +28,25 @@ public class GDFUserService {
 	}
 
 	public GDFUser authenticate(Credentials credentials) {
-		
+
 		GDFUser user = dao.getUser(credentials.getUsername(), credentials.getPassword());
 		user.setPassword(null);
-		return user; 
-				
+		return user;
+
 	}
 
 	public void logout(HttpServletRequest request) {
 		request.getSession().removeAttribute("user");
 		request.getSession().invalidate();
-		
-		
+
 	}
 
 	public void registerUser(GDFUser user) {
 		user.setType(typeDAO.getTypeFromId(2));
 		String password = user.getPassword();
-		logger.debug(user);;
 		user.setPassword(PasswordManager.hashPassword(password));
-		logger.debug(user);
 		dao.createUser(user);
-		
+
 	}
 
 }
