@@ -1,5 +1,9 @@
 @CHARSET "UTF-8";
 
+#manage_dropdown{
+	font-size: 150%;
+}
+
 .navbar-brand{
 	font-size: 250%;
 }
