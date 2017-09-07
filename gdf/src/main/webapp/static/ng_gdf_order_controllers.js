@@ -159,6 +159,7 @@ angular.module('gdf').controller('orderAllContoller',
 	
 	
 	$scope.clickOrder = function(order){
+		
 			var modelInstance = $modal.open({
 				templateUrl : 'order_update.html',
 				controller : 'updateOrderController',
@@ -201,5 +202,18 @@ angular.module('gdf').controller('orderAllContoller',
 			
 		return date;
 		}
+	}
+	
+	$rootScope.logout = function(){
+		$http({
+			url: 'logout',
+			method: 'post'
+		}).then(function(value) {
+			$state.go('home');
+		}, function(reason) {
+			
+		}, function(value) {
+			
+		});
 	}
 });

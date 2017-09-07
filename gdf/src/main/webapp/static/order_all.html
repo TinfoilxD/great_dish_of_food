@@ -1,6 +1,18 @@
 <div class="container">
 
-<table class="table table-hover" ng-show="selectedManageSection=='Manage Orders'">
+
+<div class="col-xs-4" id="manageOrderSection" >
+Filter
+<select ng-model="selectedOrderStatus" ng-change="showStatusOrder(selectedOrderStatus)" class="form-control">
+    <option>All Orders</option>
+    <option ng-value="status" ng-repeat="status in allOrderStatus">{{status.status}}
+    </option>
+</select> 
+</div>
+
+
+<div>
+<table class="table table-hover">
 
 <thead>
     <tr>
@@ -24,6 +36,7 @@ ng-click="clickOrder(order)" ng-repeat="order in ordersAll" scope="row">
 </tr>
 </tbody>
 </table>
+</div>
 
 
 

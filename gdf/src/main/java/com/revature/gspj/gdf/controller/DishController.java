@@ -40,6 +40,14 @@ public class DishController {
 		service.createDish(dish);
 	}
 	
+	@RequestMapping(value = "/dish/remove", method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	public void deleteDish(@RequestBody Dish dish){
+		service.deleteDish(dish);
+	}
+	
+	
 	
 	@RequestMapping(value = "/dish/addType", method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_JSON_VALUE)

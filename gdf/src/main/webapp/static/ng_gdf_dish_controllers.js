@@ -37,7 +37,7 @@ angular.module('gdf').controller('dishTypeAllController',
 			}
 		});
 angular.module('gdf').controller('dishAllController',
-		function($scope, $http, $state, $document) {
+		function($scope, $http, $state, $document,$modal) {
 			$document.ready(function() {
 				$scope.getAllDishes();
 			})
@@ -47,12 +47,50 @@ angular.module('gdf').controller('dishAllController',
 					url : 'dish/all'
 				}).then(function(value) {
 					$scope.allDishes = value.data;
+					console.log(value);
 				}, function(reason) {
 
 				}, function(value) {
 
 				})
 			}
+			$scope.deleteDish = function(dish){
+				$scope.dish= dish;
+				$http({
+					method : 'POST',
+					url : 'dish/remove',
+						data : $scope.dish
+				}).then(function(value){
+					$scope.getAllDishes();
+				})
+				
+				
+			}
+			
+			$scope.clickDish = function(dishType){
+				console.log(dishType);
+				$scope.dishType = dishType;
+				var modelInstance = $modal.open({
+					templateUrl : 'dish_type_for_dish.html',
+					controller: 'dishTypesForDishModalController',
+					size : 'lg',
+					resolve : {
+						dishType : function() {
+							console.log("Resolve" + dishType);
+							return dishType;
+						}
+					
+					}
+				});
+				modelInstance.result.then(function(value) {
+					//console.log("in" + modelInstance.order.id)
+				}, function(reason) {
+					
+				}, function(value) {
+					
+				})
+			}
+
 			$scope.selectManageSection = function(selectedOrderStatus){
 				$scope.selectedOrderStatus = selectedOrderStatus;
 				console.log("Manage: " + selectedOrderStatus);
@@ -188,3 +226,8 @@ angular.module('gdf').controller('dishRemoveTypeController',function($scope, $ht
 		})
 	}
 });
+
+angular.module('gdf').controller("dishTypesForDishModalController", function($scope,dishType){
+	console.log(dishType);
+	$scope.dishType = dishType;
+})
